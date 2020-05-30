@@ -4,6 +4,8 @@ from datetime import date
 class LoaiSach(models.Model):
     ten = models.CharField(default='', max_length=255)
     slug = models.SlugField(max_length=254, unique=True, blank=True, editable=True)
+    active = models.BooleanField(default=True)
+
     def __str__(self):
         return self.ten
 
