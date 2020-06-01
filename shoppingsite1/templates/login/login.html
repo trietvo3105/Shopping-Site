@@ -1,41 +1,37 @@
 {% extends 'base.html' %}
-
+{% load widget_tweaks %}
 {% block content %}
-
-	<section id="form"><!--form-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 col-sm-offset-1">
-					<div class="login-form"><!--login form-->
-						<h2>Login to your account</h2>
-						<form action="#" method="post">
-							{% csrf_token %}
-							<input type="text" placeholder="Name" name="taikhoan" />
-							<input type="password" placeholder="Password" name="matkhau"/>
-							<span>
-								<input type="checkbox" class="checkbox"> 
-								Keep me signed in
+{% load static %}
+<section id="form"><!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <div class="login-form"><!--login form-->
+                    <h2>Đăng nhập</h2>
+                    <form action="{% url 'core:login' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Name" name="taikhoan"/>
+                        <input type="password" placeholder="Password" name="matkhau"/>
+                        <span>
+								<input type="checkbox" class="checkbox">
+								Ghi nhớ đăng nhập
 							</span>
-							<button type="submit" class="btn btn-default">Login</button>
-						</form>
-					</div><!--/login form-->
-				</div>
-				<div class="col-sm-1">
-					<h2 class="or">OR</h2>
-				</div>
-				<div class="col-sm-4">
-					<div class="signup-form"><!--sign up form-->
-						<h2>New User Signup!</h2>
-						<form action="#">
-							<input type="text" placeholder="Name"/>
-							<input type="email" placeholder="Email Address"/>
-							<input type="password" placeholder="Password"/>
-							<button type="submit" class="btn btn-default">Signup</button>
-						</form>
-					</div><!--/sign up form-->
-				</div>
-			</div>
-		</div>
-	</section><!--/form-->
+                        <button type="submit" class="btn btn-default">Đăng nhập</button>
+                    </form>
+                </div><!--/login form-->
+            </div>
+            <div class="col-sm-1">
+                <h2 class="or">Hay</h2>
+            </div>
+            <div class="col-sm-4">
+                <div class="signup-form"><!--sign up form-->
+                    <h2>Đăng ký tài khoản mới!</h2>
+
+                    <button type="button" class="btn btn-default">Đăng ký!!</button>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>
+</section><!--/form-->
 
 {% endblock %}

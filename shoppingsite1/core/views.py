@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate, login, decorators
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -34,11 +34,23 @@ class UserView(LoginRequiredMixin, View):
         pass
 
 
+# def dang_ky(request):
+#     form = FormDangKy()
+#     if request.method == 'POST':
+#         form = FormDangKy(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponse('Bạn tạo tài khoản thành công')
+#     return render(request, 'login/register.html', {'form': form})
+
+
 def dang_ky(request):
-    form = FormDangKy()
-    if request.method == 'POST':
+    if request.method == "POST":
         form = FormDangKy(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('Bạn tạo tài khoản thành công')
-    return render(request, 'login/register.html', {'form': form})
+            return redirect('login')
+    else:
+        form = FormDangKy()
+
+    return render(request, 'login/login.html', {'form': form})
