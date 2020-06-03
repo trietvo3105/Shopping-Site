@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login, decorators
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from user.forms import FormDangKy
+from django.contrib.auth.decorators import login_required
+from .forms import CustomUserUpdateForm
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -49,8 +51,20 @@ def dang_ky(request):
         form = FormDangKy(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('core:login')
     else:
         form = FormDangKy()
 
-    return render(request, 'login/login.html', {'form': form})
+    return render(request, 'login/register.html', {'form': form})
+
+@login_required
+def profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = CustomUserUpdateForm(request.POST, instance=user, files=request.FILES)
+        if form.is_valid():
+            form.save()
+    else:
+        form = CustomUserUpdateForm(instance=user)
+
+    return render(request, 'login/profile.html', {'form': form})

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+<section id="form"><!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <div class="profile-form"><!--login form-->
+                    <h2>Thay đổi thông tin</h2>
+                    <form action="{% url 'core:login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form method="post" action="." enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>Họ</label>
+                                            {% render_field form.first_name class="form-control" placeholder="Họ" %}
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>Tên</label>
+                                            {% render_field form.last_name class="form-control" placeholder="Tên"%}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.photo }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label>Username</label>
+                                            {% render_field form.username class="form-control" placeholder="Tên tài khoản"%}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.photo }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label>Email</label>
+                                            {% render_field form.email class="form-control" placeholder="email@gmail.com"%}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label>Địa chỉ</label>
+                                        {% render_field form.address class="form-control" placeholder="Số nhà, Đường, Phường, Quận, Thành phố" %}
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form.photo }}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Giới thiệu bản thân</label>
+                                        {% render_field form.description class="form-control" rows="7" placeholder="Sơ lược bản thân"%}
+                                    </div>
+                                    <hr class="mb-4">
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Cập nhật</button>
+                                </form>
+                            </div>
+                    </form>
+                </div><!--/login form-->
+            </div>
+        </div>
+    </div>
+</section><!--/form-->
+
+{% endblock %}

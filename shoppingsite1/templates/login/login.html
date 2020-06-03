@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load widget_tweaks %}
 {% block content %}
 {% load static %}
 <section id="form"><!--form-->
@@ -10,8 +9,8 @@
                     <h2>Đăng nhập</h2>
                     <form action="{% url 'core:login' %}" method="post">
                         {% csrf_token %}
-                        <input type="text" placeholder="Name" name="taikhoan"/>
-                        <input type="password" placeholder="Password" name="matkhau"/>
+                        <input type="text" placeholder="Tài khoản" name="taikhoan"/>
+                        <input type="password" placeholder="Mật khẩu" name="matkhau"/>
                         <span>
 								<input type="checkbox" class="checkbox">
 								Ghi nhớ đăng nhập
@@ -26,8 +25,10 @@
             <div class="col-sm-4">
                 <div class="signup-form"><!--sign up form-->
                     <h2>Đăng ký tài khoản mới!</h2>
+                    <form action="{% url 'core:register' %}">
+                        <button type="submit" class="btn btn-default">Đăng ký!!</button>
+                    </form>
 
-                    <button type="button" class="btn btn-default">Đăng ký!!</button>
                 </div><!--/sign up form-->
             </div>
         </div>
