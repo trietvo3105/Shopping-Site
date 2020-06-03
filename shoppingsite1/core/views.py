@@ -49,8 +49,8 @@ def dang_ky(request):
         form = FormDangKy(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('core:login')
     else:
         form = FormDangKy()
 
-    return render(request, 'login/login.html', {'form': form})
+    return render(request, 'login/register.html', {'form': form})
