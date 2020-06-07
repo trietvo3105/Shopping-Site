@@ -54,3 +54,6 @@ def dang_ky(request):
         form = FormDangKy()
 
     return render(request, 'login/register.html', {'form': form})
+class HomePage(View):
+    def get(self, request):
+        return render(request, 'homepage/index.html')
