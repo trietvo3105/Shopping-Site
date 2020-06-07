@@ -262,10 +262,10 @@ a#scrollUp i{
   height: 35px;
   outline: medium none;
   padding-left: 10px;
-  width: 155px;
+  width: 300px;
   background-image: url(../images/home/searchicon.png);
   background-repeat: no-repeat;
-  background-position: 130px;
+  background-position: 280px;
 }
 
 
@@ -546,13 +546,13 @@ ul.sub-menu {
 
 .footer-bottom {
   background: #D6D6D0;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 
 .footer-bottom p {
   color: #363432;
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   margin-left: 15px;
 }
 
