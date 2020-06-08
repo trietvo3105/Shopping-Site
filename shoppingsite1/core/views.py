@@ -21,7 +21,7 @@ class DangNhap(View):
             return HttpResponse('Tài khoản không tồn tại!')
         else:
             login(request, user)
-            return render(request, 'login/success.html')
+            return render(request, 'homepage/index.html')
 
 
 class UserView(LoginRequiredMixin, View):
@@ -54,6 +54,9 @@ def dang_ky(request):
         form = FormDangKy()
 
     return render(request, 'login/register.html', {'form': form})
+
+
+
 class HomePage(View):
     def get(self, request):
         return render(request, 'homepage/index.html')

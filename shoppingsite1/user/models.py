@@ -11,7 +11,8 @@ class KhachHangUser(AbstractUser):
 
 
 class DiaChiKhachHang(models.Model):
-    user = models.ForeignKey(KhachHangUser, on_delete=models.CASCADE, primary_key=True)
+    id = models.BigIntegerField(primary_key=True, default=0)
+    user = models.ForeignKey(KhachHangUser, on_delete=models.CASCADE)
     dia_chi = models.CharField(max_length=255)
 
     class Meta:
