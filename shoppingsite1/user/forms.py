@@ -38,5 +38,5 @@ from .models import KhachHangUser
 class FormDangKy(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email',)
+        fields = ('username', 'email')
 

@@ -5,10 +5,10 @@
 <section id="form"><!--form-->
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-1">
+            <div class="col-sm-10 col-sm-offset-3">
                 <div class="profile-form"><!--login form-->
                     <h2>Thay đổi thông tin</h2>
-                    <form action="{% url 'core:login' %}" method="post">
+                    <form action="{% url 'core:profile' %}" method="post">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-8">
@@ -16,11 +16,16 @@
                                     {% csrf_token %}
 
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-20 mb-3">
                                             <label>Họ</label>
                                             {% render_field form.first_name class="form-control" placeholder="Họ" %}
                                         </div>
-                                        <div class="col-md-6 mb-3">
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.photo }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-20 mb-3">
                                             <label>Tên</label>
                                             {% render_field form.last_name class="form-control" placeholder="Tên"%}
                                         </div>
@@ -29,8 +34,8 @@
                                         {{ form.photo }}
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12 mb-3">
-                                            <label>Username</label>
+                                        <div class="col-md-20 mb-3">
+                                            <label>Tên tài khoản</label>
                                             {% render_field form.username class="form-control" placeholder="Tên tài khoản"%}
                                         </div>
                                     </div>
@@ -38,23 +43,22 @@
                                         {{ form.photo }}
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-20 mb-3">
                                             <label>Email</label>
                                             {% render_field form.email class="form-control" placeholder="email@gmail.com"%}
                                         </div>
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label>Địa chỉ</label>
-                                        {% render_field form.address class="form-control" placeholder="Số nhà, Đường, Phường, Quận, Thành phố" %}
-                                    </div>
-
-                                    <div class="form-group">
+                                     <div class="form-group">
                                         {{ form.photo }}
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Giới thiệu bản thân</label>
-                                        {% render_field form.description class="form-control" rows="7" placeholder="Sơ lược bản thân"%}
+                                    <div class="row">
+                                        <div class="col-md-20 mb-3">
+                                            <label>Số điện thoại</label>
+                                            {% render_field form.sdt class="form-control" placeholder="Số điện thoại của bạn"%}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.photo }}
                                     </div>
                                     <hr class="mb-4">
                                     <button class="btn btn-primary btn-lg btn-block" type="submit">Cập nhật</button>

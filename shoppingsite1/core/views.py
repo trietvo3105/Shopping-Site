@@ -55,6 +55,7 @@ def dang_ky(request):
     else:
         form = FormDangKy()
 
+
     return render(request, 'login/register.html', {'form': form})
 
 @login_required
