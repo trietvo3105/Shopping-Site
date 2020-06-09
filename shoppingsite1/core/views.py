@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth import authenticate, login, decorators
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from user.forms import FormDangKy
+from user.forms import FormDangKy, CustomUserUpdateForm, AddressUpdateForm
+from user.models import DiaChiKhachHang
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -60,3 +62,26 @@ def dang_ky(request):
 class HomePage(View):
     def get(self, request):
         return render(request, 'homepage/index.html')
+
+
+@login_required
+def profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = CustomUserUpdateForm(request.POST, instance=user, files=request.FILES)
+        a_form = [AddressUpdateForm(request.POST, prefix=str(x), instance=DiaChiKhachHang()) for x in range(0,3)]
+        if form.is_valid() and all([a_f.is_valid() for a_f in a_form]):
+            new_form = form.save()
+            for a_f in a_form:
+                new_address = a_f.save(commit=False)
+                new_address.user = new_form
+                new_address.save()
+    else:
+        form = CustomUserUpdateForm(instance=user)
+        a_form = [AddressUpdateForm(prefix=str(x), instance=DiaChiKhachHang()) for x in range(0,3)]
+    return render(request, 'login/profile.html', {'form': form, 'address': a_form})
+
+
+@login_required
+def password_change(request):
+    pass
