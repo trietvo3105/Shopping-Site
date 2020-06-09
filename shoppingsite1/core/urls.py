@@ -2,6 +2,7 @@ from django.urls import path
 from .views import DangNhap, UserView, dang_ky, HomePage, profile, password_change
 from django.contrib.auth import views as auth_views
 from django.conf import settings
+from . import views
 
 app_name = 'core'
 urlpatterns = [
