@@ -27,6 +27,7 @@
                                 <div class="caption">
                                     <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}</h4>
                                     <p>{{ user.email }}</p>
+                                    <a href="{% url 'core:password_change' %}" class="btn btn-info">Thay đổi mật khẩu</a>
                                 </div>
                             </div>
                         </div>
