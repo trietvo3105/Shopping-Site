@@ -7,7 +7,8 @@ class LoaiSach(models.Model):
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.ten
+        return self.ten + '(' + str(self.pk) + ')'
+
 
 
 class Sach(models.Model):
@@ -16,14 +17,15 @@ class Sach(models.Model):
     nxb = models.CharField(default='', max_length=255)
     nam_xb = models.IntegerField(default=0)
     mo_ta = models.TextField(default='')
-    upload_to = 'img/news/{0}/{1}'.format(date.today().year, date.today().month)
+    upload_to = 'books/{0}/{1}'.format(date.today().year, date.today().month)
     hinh_anh = models.ImageField(upload_to=upload_to, blank=True, null=True, max_length=254, verbose_name=('Ảnh bìa'))
     so_luong_con = models.IntegerField(default=0)
     so_luong_nhap = models.IntegerField(default=0)
     don_gia = models.IntegerField(default=0)
     loai_sach = models.ForeignKey(LoaiSach, on_delete=models.CASCADE)
     def __str__(self):
-        return self.ten
+        return self.ten + '(' + str(self.pk) + ')'
+
 
 
 class DotNhapSach(models.Model):
@@ -36,5 +38,5 @@ class DotNhapSach(models.Model):
         unique_together = (('id_sach', 'ngay_nhap'),)
 
     def __str__(self):
-        return self.ngay_nhap
+        return self.ngay_nhap + '(' + str(self.pk) + ')'
 

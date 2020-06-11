@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import DangNhap, UserView, dang_ky, HomePage, profile, password_change
+from .views import DangNhap, UserView, dang_ky, HomePage, profile, password_change, ThieuNhi
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path('password_change/', password_change, name='password_change'),
     path('userview/', UserView.as_view(), name='user-view'),
     path('', HomePage.as_view(), name='index'),
+    path('thieunhi/', ThieuNhi.as_view(), name='thieunhi')
 
 ]
 

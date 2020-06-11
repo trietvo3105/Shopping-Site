@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %} Trang chủ {% endblock %}
 {% block content %}
+<!--advertisement-->
 	<section id="advertisement">
 		<div class="container">
 			<div class="row">
@@ -33,11 +34,6 @@
 								</div>
 								<div class="col-sm-8">
 									<img src="{% static 'images/home/S.jpg' %}" alt="Khoa học" style="width:100%;height:450px;">
-<!--									<div class="carousel-caption">-->
-<!--										<h3>New York</h3>-->
-<!--										<p>We love the Big Apple!</p>-->
-<!--										<button type="button" class="btn btn-default get">Get it now</button>-->
-<!--									</div>-->
 								</div>
 							</div>
 							<div class="item">
@@ -65,398 +61,163 @@
 			</div>
 		</div>
 	</section>
-
+<!--advertisement-->
 	<section>
 		<div class="container">
 			<div class="row">
-<!--				<div class="col-sm-3">-->
-<!--&lt;!&ndash;					<div class="left-sidebar">&ndash;&gt;-->
-<!--&lt;!&ndash;						<h2>Category</h2>&ndash;&gt;-->
-<!--&lt;!&ndash;						<div class="panel-group category-products" id="accordian">&lt;!&ndash;category-productsr&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="panel panel-default">&ndash;&gt;-->
-<!--&lt;!&ndash;								<div class="panel-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;									<h4 class="panel-title">&ndash;&gt;-->
-<!--&lt;!&ndash;										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">&ndash;&gt;-->
-<!--&lt;!&ndash;											<span class="badge pull-right"><i class="fa fa-plus"></i></span>&ndash;&gt;-->
-<!--&lt;!&ndash;											Sportswear&ndash;&gt;-->
-<!--&lt;!&ndash;										</a>&ndash;&gt;-->
-<!--&lt;!&ndash;									</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;								<div id="sportswear" class="panel-collapse collapse">&ndash;&gt;-->
-<!--&lt;!&ndash;									<div class="panel-body">&ndash;&gt;-->
-<!--&lt;!&ndash;										<ul>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Nike </a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Under Armour </a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Adidas </a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Puma</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">ASICS </a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;										</ul>&ndash;&gt;-->
-<!--&lt;!&ndash;									</div>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="panel panel-default">&ndash;&gt;-->
-<!--&lt;!&ndash;								<div class="panel-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;									<h4 class="panel-title">&ndash;&gt;-->
-<!--&lt;!&ndash;										<a data-toggle="collapse" data-parent="#accordian" href="#mens">&ndash;&gt;-->
-<!--&lt;!&ndash;											<span class="badge pull-right"><i class="fa fa-plus"></i></span>&ndash;&gt;-->
-<!--&lt;!&ndash;											Mens&ndash;&gt;-->
-<!--&lt;!&ndash;										</a>&ndash;&gt;-->
-<!--&lt;!&ndash;									</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;								<div id="mens" class="panel-collapse collapse">&ndash;&gt;-->
-<!--&lt;!&ndash;									<div class="panel-body">&ndash;&gt;-->
-<!--&lt;!&ndash;										<ul>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Fendi</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Guess</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Valentino</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Dior</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Versace</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Armani</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Prada</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Dolce and Gabbana</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Chanel</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Gucci</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;										</ul>&ndash;&gt;-->
-<!--&lt;!&ndash;									</div>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;							<div class="panel panel-default">&ndash;&gt;-->
-<!--&lt;!&ndash;								<div class="panel-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;									<h4 class="panel-title">&ndash;&gt;-->
-<!--&lt;!&ndash;										<a data-toggle="collapse" data-parent="#accordian" href="#womens">&ndash;&gt;-->
-<!--&lt;!&ndash;											<span class="badge pull-right"><i class="fa fa-plus"></i></span>&ndash;&gt;-->
-<!--&lt;!&ndash;											Womens&ndash;&gt;-->
-<!--&lt;!&ndash;										</a>&ndash;&gt;-->
-<!--&lt;!&ndash;									</h4>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;								<div id="womens" class="panel-collapse collapse">&ndash;&gt;-->
-<!--&lt;!&ndash;									<div class="panel-body">&ndash;&gt;-->
-<!--&lt;!&ndash;										<ul>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Fendi</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Guess</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Valentino</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Dior</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;											<li><a href="">Versace</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;										</ul>&ndash;&gt;-->
-<!--&lt;!&ndash;									</div>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="panel panel-default">&ndash;&gt;-->
-<!--&lt;!&ndash;								<div class="panel-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;									<h4 class="panel-title"><a href="#">Kids</a></h4>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="panel panel-default">&ndash;&gt;-->
-<!--&lt;!&ndash;								<div class="panel-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;									<h4 class="panel-title"><a href="#">Fashion</a></h4>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="panel panel-default">&ndash;&gt;-->
-<!--&lt;!&ndash;								<div class="panel-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;									<h4 class="panel-title"><a href="#">Households</a></h4>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="panel panel-default">&ndash;&gt;-->
-<!--&lt;!&ndash;								<div class="panel-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;									<h4 class="panel-title"><a href="#">Interiors</a></h4>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="panel panel-default">&ndash;&gt;-->
-<!--&lt;!&ndash;								<div class="panel-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;									<h4 class="panel-title"><a href="#">Clothing</a></h4>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="panel panel-default">&ndash;&gt;-->
-<!--&lt;!&ndash;								<div class="panel-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;									<h4 class="panel-title"><a href="#">Bags</a></h4>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="panel panel-default">&ndash;&gt;-->
-<!--&lt;!&ndash;								<div class="panel-heading">&ndash;&gt;-->
-<!--&lt;!&ndash;									<h4 class="panel-title"><a href="#">Shoes</a></h4>&ndash;&gt;-->
-<!--&lt;!&ndash;								</div>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;						</div>&lt;!&ndash;/category-productsr&ndash;&gt;&ndash;&gt;-->
-
-<!--&lt;!&ndash;						<div class="brands_products">&lt;!&ndash;brands_products&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;							<h2>Brands</h2>&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="brands-name">&ndash;&gt;-->
-<!--&lt;!&ndash;								<ul class="nav nav-pills nav-stacked">&ndash;&gt;-->
-<!--&lt;!&ndash;									<li><a href=""> <span class="pull-right">(50)</span>Acne</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;									<li><a href=""> <span class="pull-right">(56)</span>Grüne Erde</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;									<li><a href=""> <span class="pull-right">(27)</span>Albiro</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;									<li><a href=""> <span class="pull-right">(32)</span>Ronhill</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;									<li><a href=""> <span class="pull-right">(5)</span>Oddmolly</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;									<li><a href=""> <span class="pull-right">(9)</span>Boudestijn</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;									<li><a href=""> <span class="pull-right">(4)</span>Rösch creative culture</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;								</ul>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;						</div>&lt;!&ndash;/brands_products&ndash;&gt;&ndash;&gt;-->
-
-<!--&lt;!&ndash;						<div class="price-range">&lt;!&ndash;price-range&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;							<h2>Price Range</h2>&ndash;&gt;-->
-<!--&lt;!&ndash;							<div class="well">&ndash;&gt;-->
-<!--&lt;!&ndash;								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />&ndash;&gt;-->
-<!--&lt;!&ndash;								 <b>$ 0</b> <b class="pull-right">$ 600</b>&ndash;&gt;-->
-<!--&lt;!&ndash;							</div>&ndash;&gt;-->
-<!--&lt;!&ndash;						</div>&lt;!&ndash;/price-range&ndash;&gt;&ndash;&gt;-->
-
-<!--&lt;!&ndash;						<div class="shipping text-center">&lt;!&ndash;shipping&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;							<img src="images/home/shipping.jpg" alt="" />&ndash;&gt;-->
-<!--&lt;!&ndash;						</div>&lt;!&ndash;/shipping&ndash;&gt;&ndash;&gt;-->
-
-<!--&lt;!&ndash;					</div>&ndash;&gt;-->
-<!--				</div>-->
-
-				<div class="col-sm-15 padding-right">
-					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Khuyến mãi</h2>
+				<div class="col-sm-15 padding-right"><!--Tn_items-->
+					<div class="features_items">
+						<h2 class="title text-center"><a href="{% url 'core:thieunhi' %}">Thiếu nhi</a></h2>
+						{% for item in Tn_items %}
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="images/shop/product12.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<img src="{{item.hinh_anh.url}}" alt="" style="width:100%;height:100%;">
+										<h2> {{ item.don_gia }} vnđ</h2>
+										<p>{{item.ten}}</p>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
+											<h2>Mô tả sản phẩm</h2>
+											<p style="color: #FFFFFF">{{item.mo_ta}}</p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product11.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product10.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product9.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-									<img src="images/home/new.png" class="new" alt="" />
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product8.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-									<img src="images/home/sale.png" class="new" alt="" />
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product7.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div><!--features_items-->
-				</div>
-				<div class="col-sm-15 padding-right">
-					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Ngoại văn</h2>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product12.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product11.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product10.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product9.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-									<img src="images/home/new.png" class="new" alt="" />
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product8.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-									<img src="images/home/sale.png" class="new" alt="" />
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product7.jpg" alt="" />
-										<h2>56.000 vnđ</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>56.000 vnđ</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-							</div>
+						{% endfor %}
+						<div class="choose">
+							<ul class="nav nav-pills nav-justified">
+								<li><a href="{% url 'core:thieunhi' %}"><i class="fa fa-plus-square"></i>Xem thêm</a></li>
+							</ul>
 						</div>
 					</div>
-				</div>
-				<div class="choose">
-					<ul class="nav nav-pills nav-justified">
-						<li><a href="{% url 'core:login' %}"><i class="fa fa-plus-square"></i>Xem thêm</a></li>
-					</ul>
-				</div>
+				</div><!--Tn_items-->
+				<!--Thêm ở dưới đây từng cái Khoa học, ... nha-->
 			</div>
 		</div>
 	</section>
 {% endblock %}
+<!--				<div class="col-sm-15 padding-right">-->
+<!--					<div class="features_items">&lt;!&ndash;Kh_items&ndash;&gt;-->
+<!--						<h2 class="title text-center"><a href="{% url 'core:khoahoc' %}">Khoa học</a></h2>-->
+<!--						{% for item in Kh_items %}-->
+<!--						<div class="col-sm-4">-->
+<!--							<div class="product-image-wrapper">-->
+<!--								<div class="single-products">-->
+<!--									<div class="productinfo text-center">-->
+<!--										<img src="{{item.hinh_anh.url}}" alt="" style="width:100%;height:100%;">-->
+<!--										<h2> {{ item.don_gia }} vnđ</h2>-->
+<!--										<p>{{item.ten}}</p>-->
+<!--									</div>-->
+<!--									<div class="product-overlay">-->
+<!--										<div class="overlay-content">-->
+<!--											<h2>Mô tả sản phẩm</h2>-->
+<!--											<p style="color: #FFFFFF">{{item.mo_ta}}</p>-->
+<!--											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						{% endfor %}-->
+<!--						<div class="choose">-->
+<!--							<ul class="nav nav-pills nav-justified">-->
+<!--								<li><a href="{% url 'core:khoahoc' %}"><i class="fa fa-plus-square"></i>Xem thêm</a></li>-->
+<!--							</ul>-->
+<!--						</div>-->
+<!--					</div>&lt;!&ndash;Kh_items&ndash;&gt;-->
+<!--				</div>-->
+<!--				<div class="col-sm-15 padding-right">-->
+<!--					<div class="features_items">&lt;!&ndash;Vh_items&ndash;&gt;-->
+<!--						<h2 class="title text-center">Văn học</h2>-->
+<!--						{% for item in Vh_items %}-->
+<!--						<div class="col-sm-4">-->
+<!--							<div class="product-image-wrapper">-->
+<!--								<div class="single-products">-->
+<!--									<div class="productinfo text-center">-->
+<!--										<img src="{{item.hinh_anh.url}}" alt="" style="width:100%;height:400px;">-->
+<!--										<h2> {{ item.don_gia }} vnđ</h2>-->
+<!--										<p>{{item.ten}}</p>-->
+<!--									</div>-->
+<!--									<div class="product-overlay">-->
+<!--										<div class="overlay-content">-->
+<!--											<h2>{{ item.don_gia }} vnđ</h2>-->
+<!--											<p>{{item.ten}}</p>-->
+<!--											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						{% endfor %}-->
+<!--						<div class="choose">-->
+<!--							<ul class="nav nav-pills nav-justified">-->
+<!--								<li><a href="{% url 'core:vanhoc' %}"><i class="fa fa-plus-square"></i>Xem thêm</a></li>-->
+<!--							</ul>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>&lt;!&ndash;Vh_items&ndash;&gt;-->
+<!--				<div class="col-sm-15 padding-right">-->
+<!--					<div class="features_items">&lt;!&ndash;Nt_items&ndash;&gt;-->
+<!--						<h2 class="title text-center">Nghệ thuật</h2>-->
+<!--						{% for item in Nt_items %}-->
+<!--						<div class="col-sm-4">-->
+<!--							<div class="product-image-wrapper">-->
+<!--								<div class="single-products">-->
+<!--									<div class="productinfo text-center">-->
+<!--										<img src="{{item.hinh_anh.url}}" alt="" style="width:100%;height:400px;">-->
+<!--										<h2> {{ item.don_gia }} vnđ</h2>-->
+<!--										<p>{{item.ten}}</p>-->
+<!--									</div>-->
+<!--									<div class="product-overlay">-->
+<!--										<div class="overlay-content">-->
+<!--											<h2>{{ item.don_gia }} vnđ</h2>-->
+<!--											<p>{{item.ten}}</p>-->
+<!--											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						{% endfor %}-->
+<!--						<div class="choose">-->
+<!--							<ul class="nav nav-pills nav-justified">-->
+<!--								<li><a href="{% url 'core:nghethuat' %}"><i class="fa fa-plus-square"></i>Xem thêm</a></li>-->
+<!--							</ul>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>&lt;!&ndash;Nt_items&ndash;&gt;-->
+<!--				<div class="col-sm-15 padding-right">-->
+<!--					<div class="features_items">&lt;!&ndash;Nv_items&ndash;&gt;-->
+<!--						<h2 class="title text-center">Ngoại văn</h2>-->
+<!--						{% for item in Nv_items %}-->
+<!--						<div class="col-sm-4">-->
+<!--							<div class="product-image-wrapper">-->
+<!--								<div class="single-products">-->
+<!--									<div class="productinfo text-center">-->
+<!--										<img src="{{item.hinh_anh.url}}" alt="" style="width:100%;height:400px;">-->
+<!--										<h2> {{ item.don_gia }} vnđ</h2>-->
+<!--										<p>{{item.ten}}</p>-->
+<!--										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
+<!--									</div>-->
+<!--									<div class="product-overlay">-->
+<!--										<div class="overlay-content">-->
+<!--											<h2>{{ item.don_gia }} vnđ</h2>-->
+<!--											<p>{{item.ten}}</p>-->
+<!--											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						{% endfor %}-->
+<!--						<div class="choose">-->
+<!--							<ul class="nav nav-pills nav-justified">-->
+<!--								<li><a href="{% url 'core:ngoaivan' %}"><i class="fa fa-plus-square"></i>Xem thêm</a></li>-->
+<!--							</ul>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>&lt;!&ndash;Nv_items&ndash;&gt;-->
