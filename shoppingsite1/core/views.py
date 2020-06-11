@@ -12,6 +12,8 @@ from user.forms import FormDangKy, CustomUserUpdateForm, AddressUpdateForm
 from user.models import DiaChiKhachHang
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
+from book.models import *
 
 # Create your views here.
 
@@ -66,8 +68,44 @@ def dang_ky(request):
 
 class HomePage(View):
     def get(self, request):
-        return render(request, 'homepage/index.html')
+        Tn_items = Sach.objects.filter(loai_sach="3").order_by("-pk")[:6]
+        Kh_items = Sach.objects.filter(loai_sach="4").order_by("-pk")[:6]
+        Vh_items = Sach.objects.filter(loai_sach="5").order_by("-pk")[:6]
+        Nt_items = Sach.objects.filter(loai_sach="6").order_by("-pk")[:6]
+        Nv_items = Sach.objects.filter(loai_sach="7").order_by("-pk")[:6]
+        context = {
+            'Tn_items': Tn_items,
+            'Kh_items': Kh_items,
+            # 'Vh_items': Vh_items,
+            # 'Nt_items': Nt_items,
+            # 'Nv_items': Tn_items,
+        }
+        return render(request, 'homepage/index.html', context)
+    def post(self, request):
+        pass
 
+class ThieuNhi(View):
+    def get(self, request):
+        posts = Sach.objects.filter(loai_sach="3").order_by("-pk")
+        paginator = Paginator(posts, 9)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+        context = {
+            'posts': posts
+        }
+        return render(request, 'thieunhi/thieunhi.html', context)
+
+# class KhoaHoc(View):
+#     def get(self, request):
+#         Kh_items = Sach.objects.filter(loai_sach="1")[:6]
+#         # New_items = Sach.objects.all().order_by("-pk")[:6]
+#         # New_items = Sach.objects.filter(loai_sach="1")[:3]
+#         context = {
+#             'Kh_items': Kh_items,
+#         }
+#         return render(request, 'homepage/khoahoc.html', context)
+#     def post(self, request):
+#         pass
 
 @login_required
 def profile(request):

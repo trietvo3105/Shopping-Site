@@ -891,7 +891,7 @@ h2.title {
 }
 
 .product-overlay {
-  background:#FE980F;
+  background:rgba(148,148,148,0.9);
   top: 0;
   display: none;
   height: 0;
@@ -911,7 +911,7 @@ h2.title {
 .product-overlay .overlay-content {
   bottom: 0;
   position: absolute;
-  bottom: 0;
+  bottom: 150px;
   text-align: center;
   width: 100%;
 }
@@ -1096,9 +1096,18 @@ h2.title {
 
 .pagination {
   display: inline-block;
+  text-align:center;
   margin-bottom: 25px;
-  margin-top: 0;
+  margin-top: 1em;
   padding-left: 15px;
+}
+
+.pagination-action {
+  margin: 0 0.1em;
+  display: inline-block;
+  padding: 0.5em;
+  color: #FE980F;
+  font-size: 1.3em;
 }
 
 .pagination  li:first-child  a, .pagination  li:first-child  span {
@@ -1133,12 +1142,46 @@ h2.title {
   color:#000;
 }
 
-.pagination  li  a:hover{
+.pagination-action:hover{
 	background:#FE980F;
 	color:#fff;
 }
 
+.pagination-number{
+	background-color:#FE980F;
+	padding 0.5em 0.8em;
+	color:#fff;
+	border-radius: 2px;
+}
 
+.pagination-number:hover, .pagination-current {
+	background-color:#FE980F;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #FE980F;
+  color: black;
+}
+
+.next {
+  background-color: #FE980F;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
 
 /*************************
 *******Product Details CSS******
