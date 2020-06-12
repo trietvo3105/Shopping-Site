@@ -1164,18 +1164,15 @@ a {
   padding: 8px 16px;
 }
 
-a:hover {
-  background-color: #ddd;
-  color: black;
-}
+
 
 .previous {
-  background-color: #FE980F;
-  color: black;
+  background-color: #ddd;
+  color: white;
 }
 
 .next {
-  background-color: #FE980F;
+  background-color: #ddd;
   color: white;
 }
 
