@@ -107,6 +107,23 @@ class NgoaiVan(ThieuNhi):
         super(**kwargs)
         self.loai_sach = "7"
         self.link = 'ngoaivan/ngoaivan.html'
+
+
+class VanHoc(ThieuNhi):
+    def __init__(self, **kwargs):
+        super(**kwargs)
+        self.loai_sach = "5"
+        self.link = 'vanhoc/vanhoc.html'
+
+
+class NgheThuat(ThieuNhi):
+    def __init__(self, **kwargs):
+        super(**kwargs)
+        self.loai_sach = "6"
+        self.link = 'nghethuat/nghethuat.html'
+
+
+
 @login_required
 def profile(request):
     user = request.user

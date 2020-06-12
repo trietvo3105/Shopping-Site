@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title %} Văn học {%endblock%}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-15 padding-right">
+                <div class="features_items"><!--Tn_items-->
+                    <h2 class="title text-center"><a style="text-decoration: none; color:orange;"
+                                                     href="{% url 'core:vanhoc' %}">Văn học</a></h2>
+                    {% for item in posts %}
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="{{item.hinh_anh.url}}" alt="" style="width:auto;height:400px;">
+                                    <h2> {{ item.don_gia }}.000 vnđ</h2>
+                                    <p>{{item.ten}}</p>
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <h2>Mô tả sản phẩm</h2>
+                                        <p style="color: #FFFFFF">{{item.mo_ta}}</p>
+                                        <a href="#" class="btn btn-default add-to-cart"><i
+                                                class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="pagination">
+                {% if posts.has_previous %}
+                <!--                <a href="?page=1"> << </a>-->
+                <a style="text-decoration: none;" href="?page={{ posts.previous_page_number}}" class="previous round">
+                    &#8249; </a>
+                {% endif %}
+                {% for num in posts.paginator.page_range %}
+                {% if posts.number == num %}
+                <strong><a style="text-decoration: none; color:orange;"
+                           href="?page={{ posts.number }}">{{posts.number}}</a></strong>
+                {% elif posts.number != num %}
+                <a style="text-decoration: none; color:orange;" href="?page={{ num }}">{{num}}</a>
+                {% endif %}
+                {% endfor %}
+                {% if posts.has_next %}
+                <a style="text-decoration: none;" href="?page={{ posts.next_page_number }}" class="next round">
+                    &#8250; </a>
+                <!--                    <a href="?page={{ posts.paginator.num_pages }}"> >> </a>-->
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
