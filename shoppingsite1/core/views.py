@@ -85,28 +85,28 @@ class HomePage(View):
         pass
 
 class ThieuNhi(View):
-    def __init__(self, **kwargs):
-        super(**kwargs)
-        self.loai_sach = "3"
-        self.link = 'thieunhi/thieunhi.html'
     def get(self, request):
-        posts = Sach.objects.filter(loai_sach=self.loai_sach).order_by("-pk")
+        posts = Sach.objects.filter(loai_sach="3").order_by("-pk")
         paginator = Paginator(posts, 9)
         page = request.GET.get('page')
         posts = paginator.get_page(page)
-        return render(request, self.link, {'posts': posts})
+        context = {
+            'posts': posts
+        }
+        return render(request, 'thieunhi/thieunhi.html', context)
 
-class KhoaHoc(ThieuNhi):
-    def __init__(self, **kwargs):
-        super(**kwargs)
-        self.loai_sach = "4"
-        self.link = 'khoahoc/khoahoc.html'
+# class KhoaHoc(View):
+#     def get(self, request):
+#         Kh_items = Sach.objects.filter(loai_sach="1")[:6]
+#         # New_items = Sach.objects.all().order_by("-pk")[:6]
+#         # New_items = Sach.objects.filter(loai_sach="1")[:3]
+#         context = {
+#             'Kh_items': Kh_items,
+#         }
+#         return render(request, 'homepage/khoahoc.html', context)
+#     def post(self, request):
+#         pass
 
-class NgoaiVan(ThieuNhi):
-    def __init__(self, **kwargs):
-        super(**kwargs)
-        self.loai_sach = "7"
-        self.link = 'ngoaivan/ngoaivan.html'
 @login_required
 def profile(request):
     user = request.user
