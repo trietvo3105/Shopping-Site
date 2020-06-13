@@ -76,9 +76,9 @@ class HomePage(View):
         context = {
             'Tn_items': Tn_items,
             'Kh_items': Kh_items,
-            # 'Vh_items': Vh_items,
-            # 'Nt_items': Nt_items,
-            # 'Nv_items': Tn_items,
+            'Vh_items': Vh_items,
+            'Nt_items': Nt_items,
+            'Nv_items': Tn_items
         }
         return render(request, 'homepage/index.html', context)
     def post(self, request):

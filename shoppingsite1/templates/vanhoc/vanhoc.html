@@ -35,7 +35,7 @@
             <div class="pagination">
                 {% if posts.has_previous %}
                 <!--                <a href="?page=1"> << </a>-->
-                <a style="text-decoration: none;" href="?page={{ posts.previous_page_number}}" class="previous round">
+                <a style="text-decoration: none;" href="?page={{ posts.previous_page_number}}" class="previouss round">
                     &#8249; </a>
                 {% endif %}
                 {% for num in posts.paginator.page_range %}
@@ -47,7 +47,7 @@
                 {% endif %}
                 {% endfor %}
                 {% if posts.has_next %}
-                <a style="text-decoration: none;" href="?page={{ posts.next_page_number }}" class="next round">
+                <a style="text-decoration: none;" href="?page={{ posts.next_page_number }}" class="nextt round">
                     &#8250; </a>
                 <!--                    <a href="?page={{ posts.paginator.num_pages }}"> >> </a>-->
                 {% endif %}
