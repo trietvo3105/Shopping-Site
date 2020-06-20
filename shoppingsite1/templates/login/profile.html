@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %} Thông tin người dùng {% endblock %}
+{% block content %}
+
+<section id="form"><!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="profile-form"><!--login form-->
+
+                    <div class="col-sm-offset-5">
+                        <h1><b>Thay đổi thông tin</b></h1>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <div class="thumbnail">
+                                {% if user.photo %}
+                                <img src="{{ user.photo.url }}" alt="image" style="width:100%">
+                                {% else %}
+                                <img src="{% static 'images/login/default-avatar.jpg' %}"
+                                     alt="image" style="width:100%">
+                                {% endif %}
+                                <div class="caption">
+                                    <h4 class="card-title">{{ user.first_name }} {{ user.last_name }}</h4>
+                                    <p>{{ user.email }}</p>
+                                    <a href="{% url 'core:password_change' %}" class="btn btn-info">Thay đổi mật khẩu</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <form method="post" action="{% url 'core:profile' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label>Họ</label>
+                                        {% render_field form.first_name class="form-control" placeholder="Họ" %}
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label>Tên</label>
+                                        {% render_field form.last_name class="form-control" placeholder="Tên"%}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.photo }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label>Tên tài khoản</label>
+                                        {% render_field form.username class="form-control" placeholder="Tên tài khoản"%}
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label>Email</label>
+                                        {% render_field form.email class="form-control" placeholder="email@gmail.com"%}
+                                    </div>
+                                </div>
+                                <div class="col-md-20 mb-3">
+                                    {% for item in address %}
+                                    <label>Địa chỉ</label>
+                                    {% render_field item.dia_chi class="form-control" %}
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-20 mb-3">
+                                    <label>Số điện thoại</label>
+                                    {% render_field form.sdt class="form-control" placeholder="Số điện thoại của bạn"%}
+                                </div>
+                                <hr class="mb-4">
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Cập nhật</button>
+                            </form>
+                        </div>
+                    </div><!--/login form-->
+                </div>
+            </div>
+        </div>
+</section><!--/form-->
+{% endblock %}
