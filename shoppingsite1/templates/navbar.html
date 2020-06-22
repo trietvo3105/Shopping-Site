@@ -36,7 +36,7 @@
 					</div>
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+								<li><a href="{% url 'core:cart_detail' %}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 								{% if user.is_authenticated %}
 									<li><a href="{% url 'core:profile' %}"><i class="fa fa-user"></i>Xin chào! {{ user.username }}</a></li>
                     				<li><a  href="{% url 'core:logout' %}">Đăng xuất</a></li>

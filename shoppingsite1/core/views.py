@@ -161,7 +161,7 @@ def password_change(request):
         return render(request, 'login/password_change.html', args)
 
 
-@login_required
+@login_required(login_url='/login/')
 def cart_add(request, id):
     cart = Cart(request)
     product = Sach.objects.get(id=id)
@@ -169,6 +169,6 @@ def cart_add(request, id):
     return redirect('core:index')
 
 
-@login_required
-def cart_view(request):
-    return render(request, 'cart/cart.html')
+@login_required(login_url='/login/')
+def cart_detail(request):
+    return render(request, 'cart/cart_detail.html')
