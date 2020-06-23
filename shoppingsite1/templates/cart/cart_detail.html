@@ -66,17 +66,17 @@
                     </td>
                     <td class="cart_quantity">
                         <div class="cart_quantity_button">
-                            <a class="cart_quantity_up" href=""> + </a>
+                            <a class="cart_quantity_up" href="{% url 'core:item_increment' key %}"> + </a>
                             <input class="cart_quantity_input" type="text" name="quantity"
                                    value="{{value.quantity}}" autocomplete="off" size="2">
-                            <a class="cart_quantity_down" href=""> - </a>
+                            <a class="cart_quantity_down" href="{% url 'core:item_decrement' key %}"> - </a>
                         </div>
                     </td>
                     <td class="cart_total">
                         <p class="cart_total_price">{{ value.price|multiply:value.quantity }} VNĐ</p>
                     </td>
                     <td class="cart_delete">
-                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                        <a class="cart_quantity_delete" href="{% url 'core:item_clear' key %}"><i class="fa fa-times"></i></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -155,8 +155,9 @@
                         <li>Shipping Cost <span>Free</span></li>
                         <li>Total <span>$61</span></li>
                     </ul>
-                    <a class="btn btn-default update" href="">Update</a>
-                    <a class="btn btn-default check_out" href="">Check Out</a>
+                    <a class="btn btn-default update" href="">Lưu</a>
+                    <a class="btn btn-default check_out" href="">Đặt hàng</a>
+                    <a class="btn btn-default check_out" href="{% url 'core:cart_clear' %}">Xóa</a>
                 </div>
             </div>
         </div>
