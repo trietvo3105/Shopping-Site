@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from book.models import *
+from voucher.models import Voucher
 from cart.cart import Cart
 
 # Create your views here.
@@ -178,7 +179,8 @@ def cart_clear(request):
 
 @login_required(login_url='/login/')
 def cart_detail(request):
-    return render(request, 'cart/cart_detail.html')
+    voucher = Voucher.objects.all()
+    return render(request, 'cart/cart_detail.html', {'voucher':voucher})
 
 
 @login_required(login_url='/login/')
@@ -203,3 +205,32 @@ def item_decrement(request, id):
     product = Sach.objects.get(id=id)
     cart.decrement(product=product)
     return redirect('core:cart_detail')
+
+
+@login_required(login_url='/login/')
+def cart_final_value(request):
+    try:
+        voucher_id = request.POST['voucher_id']
+        voucher_used = Voucher.objects.get(id=voucher_id)
+        discount = voucher_used.gia_tri
+    except:
+        voucher_id = 0
+        discount = 0
+    cart = Cart(request)
+    voucher = Voucher.objects.all
+    subtotal = 0
+    for key, value in cart.cart.items():
+        subtotal += int(value['quantity']) * int(value['price'])
+    shipping_cost = 10 + int(subtotal*5/100)
+    total = subtotal + shipping_cost - discount
+    context = {'subtotal':subtotal, 'ship':shipping_cost,
+               'voucher':voucher, 'discount':discount,
+               'total':total, 'voucher_id':voucher_id}
+    return render(request, 'cart/cart_detail.html', context)
+
+
+@login_required(login_url='/login/')
+def voucher_display(request):
+    voucher = Voucher.objects.all
+    return render(request, 'cart/cart_detail.html', {'voucher':voucher})
+

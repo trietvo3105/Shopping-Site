@@ -27,7 +27,7 @@ urlpatterns = [
          views.item_increment, name='item_increment'),
     path('cart/item_decrement/<int:id>/',
          views.item_decrement, name='item_decrement'),
-
+    path('cart/final-value/', views.cart_final_value, name='final_value'),
 ]
 
 if settings.DEBUG:

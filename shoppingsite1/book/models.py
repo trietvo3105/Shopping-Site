@@ -23,7 +23,7 @@ class Sach(models.Model):
     image = models.ImageField(upload_to='products/', null=True)
     so_luong_con = models.IntegerField(default=0)
     so_luong_nhap = models.IntegerField(default=0)
-    price = models.FloatField(default=0)
+    price = models.IntegerField(default=0)
     loai_sach = models.ForeignKey(LoaiSach, on_delete=models.CASCADE)
 
     def __str__(self):
