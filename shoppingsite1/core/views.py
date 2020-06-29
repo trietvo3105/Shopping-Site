@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
@@ -179,7 +179,9 @@ def cart_clear(request):
 
 @login_required(login_url='/login/')
 def cart_detail(request):
-    voucher = Voucher.objects.all()
+    now = timezone.now()
+    voucher = Voucher.objects.filter(ngay_bat_dau__lte=now, ngay_het_han__gte=now)
+    # voucher = Voucher.objects.all
     return render(request, 'cart/cart_detail.html', {'voucher':voucher})
 
 
@@ -209,20 +211,27 @@ def item_decrement(request, id):
 
 @login_required(login_url='/login/')
 def cart_final_value(request):
+    now = timezone.now()
     try:
         voucher_id = request.POST['voucher_id']
-        voucher_used = Voucher.objects.get(id=voucher_id)
+        if voucher_id == '':
+            voucher_id = 0
+        voucher_used = Voucher.objects.get(id=voucher_id,ngay_bat_dau__lte=now, ngay_het_han__gte=now)
         discount = voucher_used.gia_tri
-    except:
-        voucher_id = 0
+        voucher = Voucher.objects.filter(id=voucher_id)
+    except Voucher.DoesNotExist:
+        voucher_id = ''
         discount = 0
+        voucher = None
     cart = Cart(request)
-    voucher = Voucher.objects.all
+    #voucher = Voucher.objects.all
     subtotal = 0
     for key, value in cart.cart.items():
         subtotal += int(value['quantity']) * int(value['price'])
     shipping_cost = 10 + int(subtotal*5/100)
     total = subtotal + shipping_cost - discount
+    if total <0:
+        total = 0
     context = {'subtotal':subtotal, 'ship':shipping_cost,
                'voucher':voucher, 'discount':discount,
                'total':total, 'voucher_id':voucher_id}
@@ -231,6 +240,8 @@ def cart_final_value(request):
 
 @login_required(login_url='/login/')
 def voucher_display(request):
-    voucher = Voucher.objects.all
+    now = timezone.now()
+    voucher = Voucher.objects.filter(ngay_bat_dau__lte=now,ngay_het_han__gte=now)
+    # voucher = Voucher.objects.all
     return render(request, 'cart/cart_detail.html', {'voucher':voucher})
 
