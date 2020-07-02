@@ -14,20 +14,20 @@ class LoaiSach(models.Model):
 
 
 class Sach(models.Model):
-    name = models.CharField(default='', max_length=255)
+    ten = models.CharField(default='', max_length=255)
     tac_gia = models.CharField(default='', max_length=255)
     nxb = models.CharField(default='', max_length=255)
     nam_xb = models.IntegerField(default=0)
     mo_ta = models.TextField(default='')
     upload_to = 'books/{0}/{1}'.format(date.today().year, date.today().month)
-    image = models.ImageField(upload_to='products/', null=True)
+    hinh_anh = models.ImageField(upload_to='products/', null=True)
     so_luong_con = models.IntegerField(default=0)
     so_luong_nhap = models.IntegerField(default=0)
-    price = models.IntegerField(default=0)
+    don_gia = models.IntegerField(default=0)
     loai_sach = models.ForeignKey(LoaiSach, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name + '(' + str(self.pk) + ')'
+        return self.ten + '(' + str(self.pk) + ')'
 
     # def get_add_to_cart_url(self):
     #     return reverse("core:cart_add", kwargs={'id':self.pk})

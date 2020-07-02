@@ -15,8 +15,10 @@ from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from book.models import *
 from voucher.models import Voucher
-from cart.cart import Cart
-
+from cart_origin.my_cart import MyCart
+from cart_origin.models import *
+from order.models import *
+from order.forms import Order
 # Create your views here.
 
 
@@ -164,7 +166,7 @@ def password_change(request):
 
 @login_required(login_url='/login/')
 def cart_add(request, id):
-    cart = Cart(request)
+    cart = MyCart(request)
     product = Sach.objects.get(id=id)
     cart.add(product=product)
     return redirect('core:index')
@@ -172,7 +174,7 @@ def cart_add(request, id):
 
 @login_required(login_url='/login/')
 def cart_clear(request):
-    cart = Cart(request)
+    cart = MyCart(request)
     cart.clear()
     return redirect('core:cart_detail')
 
@@ -187,7 +189,7 @@ def cart_detail(request):
 
 @login_required(login_url='/login/')
 def item_clear(request, id):
-    cart = Cart(request)
+    cart = MyCart(request)
     product = Sach.objects.get(id=id)
     cart.remove(product)
     return redirect('core:cart_detail')
@@ -195,7 +197,7 @@ def item_clear(request, id):
 
 @login_required(login_url='/login/')
 def item_increment(request, id):
-    cart = Cart(request)
+    cart = MyCart(request)
     product = Sach.objects.get(id=id)
     cart.add(product=product)
     return redirect('core:cart_detail')
@@ -203,7 +205,7 @@ def item_increment(request, id):
 
 @login_required(login_url='/login/')
 def item_decrement(request, id):
-    cart = Cart(request)
+    cart = MyCart(request)
     product = Sach.objects.get(id=id)
     cart.decrement(product=product)
     return redirect('core:cart_detail')
@@ -223,7 +225,7 @@ def cart_final_value(request):
         voucher_id = ''
         discount = 0
         voucher = None
-    cart = Cart(request)
+    cart = MyCart(request)
     #voucher = Voucher.objects.all
     subtotal = 0
     for key, value in cart.cart.items():
@@ -245,3 +247,18 @@ def voucher_display(request):
     # voucher = Voucher.objects.all
     return render(request, 'cart/cart_detail.html', {'voucher':voucher})
 
+@login_required(login_url='/login/')
+def don_hang(request):
+    cart = MyCart(request)
+    gio_hang = GioHang.objects.create(user=request.user, tao_vao=timezone.now())
+    gio_hang.save()
+    for product in cart:
+        remain_item = Sach.objects.get(pk=product['product_id'])
+        remain_item.so_luong_con = product['so_luong_con']
+        remain_item.save()
+        order_item = Sach.objects.get(pk=product['product_id'])
+        order_item = ItemTrongGioHang.objects.create(gio_hang=gio_hang, item=order_item, so_luong=product['quantity'])
+        donhang = DonHang.objects.create(khach_hang=request.user, cart=gio_hang, items=order_item)
+        donhang.save()
+    cart.clear()
+    return redirect('core:index')
