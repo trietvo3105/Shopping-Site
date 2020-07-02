@@ -184,7 +184,8 @@ def cart_detail(request):
     now = timezone.now()
     voucher = Voucher.objects.filter(ngay_bat_dau__lte=now, ngay_het_han__gte=now)
     # voucher = Voucher.objects.all
-    return render(request, 'cart/cart_detail.html', {'voucher':voucher})
+    dia_chi = DiaChiKhachHang.objects.filter(user=request.user)
+    return render(request, 'cart/cart_detail.html', {'voucher':voucher,'dia_chi':dia_chi})
 
 
 @login_required(login_url='/login/')
@@ -213,17 +214,21 @@ def item_decrement(request, id):
 
 @login_required(login_url='/login/')
 def cart_final_value(request):
+    global voucher_used, shipping_cost, dia_chi_id
     now = timezone.now()
     try:
         voucher_id = request.POST['voucher_id']
+        dia_chi_id = request.POST['dia_chi_id']
         if voucher_id == '':
             voucher_id = 0
         voucher_used = Voucher.objects.get(id=voucher_id,ngay_bat_dau__lte=now, ngay_het_han__gte=now)
         discount = voucher_used.gia_tri
         voucher = Voucher.objects.filter(id=voucher_id)
+        dia_chi = DiaChiKhachHang.objects.filter(id=dia_chi_id)
     except Voucher.DoesNotExist:
         voucher_id = ''
         discount = 0
+        voucher_used = None
         voucher = None
     cart = MyCart(request)
     #voucher = Voucher.objects.all
@@ -236,7 +241,7 @@ def cart_final_value(request):
         total = 0
     context = {'subtotal':subtotal, 'ship':shipping_cost,
                'voucher':voucher, 'discount':discount,
-               'total':total, 'voucher_id':voucher_id}
+               'total':total, 'voucher_id':voucher_id,'dia_chi':dia_chi,'dia_chi_id':dia_chi_id}
     return render(request, 'cart/cart_detail.html', context)
 
 
@@ -245,20 +250,25 @@ def voucher_display(request):
     now = timezone.now()
     voucher = Voucher.objects.filter(ngay_bat_dau__lte=now,ngay_het_han__gte=now)
     # voucher = Voucher.objects.all
-    return render(request, 'cart/cart_detail.html', {'voucher':voucher})
+    dia_chi = DiaChiKhachHang.objects.filter(user=request.user)
+    return render(request, 'cart/cart_detail.html', {'voucher':voucher,'dia_chi':dia_chi})
 
 @login_required(login_url='/login/')
 def don_hang(request):
     cart = MyCart(request)
     gio_hang = GioHang.objects.create(user=request.user, tao_vao=timezone.now())
     gio_hang.save()
+    dia_chi = DiaChiKhachHang.objects.filter(pk=dia_chi_id).first()
+    donhang = DonHang.objects.create(khach_hang=request.user, cart=gio_hang, voucher=voucher_used,
+                                     thoi_gian_dat_hang=timezone.now(), dia_chi_giao_hang=dia_chi,
+                                     phi_ship=shipping_cost)
+    donhang.save()
     for product in cart:
         remain_item = Sach.objects.get(pk=product['product_id'])
         remain_item.so_luong_con = product['so_luong_con']
         remain_item.save()
         order_item = Sach.objects.get(pk=product['product_id'])
-        order_item = ItemTrongGioHang.objects.create(gio_hang=gio_hang, item=order_item, so_luong=product['quantity'])
-        donhang = DonHang.objects.create(khach_hang=request.user, cart=gio_hang, items=order_item)
-        donhang.save()
+        order_item = ItemTrongDonHang.objects.create(don_hang=donhang, item=order_item, so_luong=product['quantity'])
+        order_item.save()
     cart.clear()
     return redirect('core:index')
