@@ -120,7 +120,7 @@
                             <li>Tổng tiền phải thanh toán <span>{{total}}.000 VNĐ</span></li>
                         </ul>
                         <button class="btn btn-default update" type="submit">Lưu</button>
-                        <a class="btn btn-default check_out" href="">Đặt hàng</a>
+                        <a class="btn btn-default check_out" href="{% url 'core:don_hang' %}">Đặt hàng</a>
                         <a class="btn btn-default check_out" href="{% url 'core:cart_clear' %}">Xóa</a>
 
                     </form>
