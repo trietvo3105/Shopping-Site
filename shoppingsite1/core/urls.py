@@ -17,7 +17,18 @@ urlpatterns = [
     path('khoahoc/', KhoaHoc.as_view(), name='khoahoc'),
     path('vanhoc/', VanHoc.as_view(), name='vanhoc'),
     path('nghethuat/', NgheThuat.as_view(), name='nghethuat'),
-    path('ngoaivan/', NgoaiVan.as_view(), name='ngoaivan')
+    path('ngoaivan/', NgoaiVan.as_view(), name='ngoaivan'),
+    path('cart/cart_add/<int:id>/', views.cart_add, name='cart_add'),
+    path('cart/cart_clear/', views.cart_clear, name='cart_clear'),
+    path('cart/cart-detail/', views.cart_detail, name='cart_detail'),
+    path('cart/cart-success/', views.don_hang, name='don_hang'),
+    path('cart/item_clear/<int:id>/',
+         views.item_clear, name='item_clear'),
+    path('cart/item_increment/<int:id>/',
+         views.item_increment, name='item_increment'),
+    path('cart/item_decrement/<int:id>/',
+         views.item_decrement, name='item_decrement'),
+    path('cart/final-value/', views.cart_final_value, name='final_value'),
 ]
 
 if settings.DEBUG:

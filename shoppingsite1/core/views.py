@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
@@ -14,6 +14,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from book.models import *
+from voucher.models import Voucher
+from cart_origin.my_cart import MyCart
+from cart_origin.models import *
+from order.models import *
+from order.forms import Order
 
 # Create your views here.
 
@@ -158,3 +163,103 @@ def password_change(request):
 
         args = {'form': form}
         return render(request, 'login/password_change.html', args)
+
+
+@login_required(login_url='/login/')
+def cart_add(request, id):
+    cart = MyCart(request)
+    product = Sach.objects.get(id=id)
+    cart.add(product=product)
+    return redirect('core:index')
+
+
+@login_required(login_url='/login/')
+def cart_clear(request):
+    cart = MyCart(request)
+    cart.clear()
+    return redirect('core:cart_detail')
+
+
+@login_required(login_url='/login/')
+def cart_detail(request):
+    now = timezone.now()
+    voucher = Voucher.objects.filter(ngay_bat_dau__lte=now, ngay_het_han__gte=now)
+    # voucher = Voucher.objects.all
+    return render(request, 'cart/cart_detail.html', {'voucher':voucher})
+
+
+@login_required(login_url='/login/')
+def item_clear(request, id):
+    cart = MyCart(request)
+    product = Sach.objects.get(id=id)
+    cart.remove(product)
+    return redirect('core:cart_detail')
+
+
+@login_required(login_url='/login/')
+def item_increment(request, id):
+    cart = MyCart(request)
+    product = Sach.objects.get(id=id)
+    cart.add(product=product)
+    return redirect('core:cart_detail')
+
+
+@login_required(login_url='/login/')
+def item_decrement(request, id):
+    cart = MyCart(request)
+    product = Sach.objects.get(id=id)
+    cart.decrement(product=product)
+    return redirect('core:cart_detail')
+
+
+@login_required(login_url='/login/')
+def cart_final_value(request):
+    now = timezone.now()
+    try:
+        voucher_id = request.POST['voucher_id']
+        if voucher_id == '':
+            voucher_id = 0
+        voucher_used = Voucher.objects.get(id=voucher_id,ngay_bat_dau__lte=now, ngay_het_han__gte=now)
+        discount = voucher_used.gia_tri
+        voucher = Voucher.objects.filter(id=voucher_id)
+    except Voucher.DoesNotExist:
+        voucher_id = ''
+        discount = 0
+        voucher = None
+    cart = MyCart(request)
+    #voucher = Voucher.objects.all
+    subtotal = 0
+    for key, value in cart.cart.items():
+        subtotal += int(value['quantity']) * int(value['price'])
+    shipping_cost = 10 + int(subtotal*5/100)
+    total = subtotal + shipping_cost - discount
+    if total <0:
+        total = 0
+    context = {'subtotal':subtotal, 'ship':shipping_cost,
+               'voucher':voucher, 'discount':discount,
+               'total':total, 'voucher_id':voucher_id}
+    return render(request, 'cart/cart_detail.html', context)
+
+
+@login_required(login_url='/login/')
+def voucher_display(request):
+    now = timezone.now()
+    voucher = Voucher.objects.filter(ngay_bat_dau__lte=now,ngay_het_han__gte=now)
+    # voucher = Voucher.objects.all
+    return render(request, 'cart/cart_detail.html', {'voucher':voucher})
+
+@login_required(login_url='/login/')
+def don_hang(request):
+    cart = MyCart(request)
+    gio_hang = GioHang.objects.create(user=request.user, tao_vao=timezone.now())
+    gio_hang.save()
+    for product in cart:
+        remain_item = Sach.objects.get(pk=product['product_id'])
+        remain_item.so_luong_con = product['so_luong_con']
+        remain_item.save()
+        order_item = Sach.objects.get(pk=product['product_id'])
+        order_item = ItemTrongGioHang.objects.create(gio_hang=gio_hang, item=order_item, so_luong=product['quantity'])
+        donhang = DonHang.objects.create(khach_hang=request.user, cart=gio_hang, items=order_item)
+        donhang.save()
+    cart.clear()
+    return redirect('core:index')

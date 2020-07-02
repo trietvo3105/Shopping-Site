@@ -21,7 +21,7 @@
                                     <div class="overlay-content">
                                         <h2>Mô tả sản phẩm</h2>
                                         <p style="color: #FFFFFF">{{item.mo_ta}}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a href="{% url 'core:cart_add' item.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
                                 </div>
                             </div>

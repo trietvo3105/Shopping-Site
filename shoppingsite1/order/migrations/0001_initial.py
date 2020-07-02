@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('cart', '0001_initial'),
+        ('cart_origin', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('voucher', '0001_initial'),
     ]
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('phuong_thuc_giao_hang', models.CharField(default='', max_length=50)),
                 ('dia_chi_giao_hang', models.CharField(default='', max_length=255)),
                 ('phi_ship', models.IntegerField(default=0)),
-                ('cart', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cart.GioHang')),
+                ('cart_origin', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cart_origin.GioHang')),
                 ('khach_hang', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
                 ('voucher', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='voucher.Voucher')),
             ],
