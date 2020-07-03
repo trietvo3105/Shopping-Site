@@ -184,7 +184,7 @@ def cart_detail(request):
     now = timezone.now()
     voucher = Voucher.objects.filter(ngay_bat_dau__lte=now, ngay_het_han__gte=now)
     # voucher = Voucher.objects.all
-    dia_chi = DiaChiKhachHang.objects.filter(user=request.user)
+    dia_chi = DiaChiKhachHang.objects.filter(user=request.user).order_by("-pk")[:3]
     return render(request, 'cart/cart_detail.html', {'voucher':voucher,'dia_chi':dia_chi})
 
 
@@ -216,20 +216,21 @@ def item_decrement(request, id):
 def cart_final_value(request):
     global voucher_used, shipping_cost, dia_chi_id
     now = timezone.now()
+    dia_chi = DiaChiKhachHang.objects.filter(user=request.user).order_by("-pk")[:3]
+    #dia_chi_chon = None
+    dia_chi_id = request.POST['dia_chi_id']
+    dia_chi_chon = DiaChiKhachHang.objects.filter(pk=dia_chi_id).first()
+    voucher = Voucher.objects.filter(ngay_bat_dau__lte=now, ngay_het_han__gte=now)
     try:
         voucher_id = request.POST['voucher_id']
-        dia_chi_id = request.POST['dia_chi_id']
         if voucher_id == '':
             voucher_id = 0
         voucher_used = Voucher.objects.get(id=voucher_id,ngay_bat_dau__lte=now, ngay_het_han__gte=now)
         discount = voucher_used.gia_tri
-        voucher = Voucher.objects.filter(id=voucher_id)
-        dia_chi = DiaChiKhachHang.objects.filter(id=dia_chi_id)
     except Voucher.DoesNotExist:
         voucher_id = ''
         discount = 0
         voucher_used = None
-        voucher = None
     cart = MyCart(request)
     #voucher = Voucher.objects.all
     subtotal = 0
@@ -241,7 +242,7 @@ def cart_final_value(request):
         total = 0
     context = {'subtotal':subtotal, 'ship':shipping_cost,
                'voucher':voucher, 'discount':discount,
-               'total':total, 'voucher_id':voucher_id,'dia_chi':dia_chi,'dia_chi_id':dia_chi_id}
+               'total':total, 'voucher_id':voucher_id,'dia_chi':dia_chi,'dia_chi_id':dia_chi_id,'dia_chi_chon':dia_chi_chon}
     return render(request, 'cart/cart_detail.html', context)
 
 
@@ -250,7 +251,7 @@ def voucher_display(request):
     now = timezone.now()
     voucher = Voucher.objects.filter(ngay_bat_dau__lte=now,ngay_het_han__gte=now)
     # voucher = Voucher.objects.all
-    dia_chi = DiaChiKhachHang.objects.filter(user=request.user)
+    #dia_chi = DiaChiKhachHang.objects.filter(user=request.user).order_by("-pk")[:3]
     return render(request, 'cart/cart_detail.html', {'voucher':voucher,'dia_chi':dia_chi})
 
 @login_required(login_url='/login/')

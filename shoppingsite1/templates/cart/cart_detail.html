@@ -90,11 +90,11 @@
 <section id="do_action">
     <div class="container">
         <div class="heading">
-            <h3>Dùng voucher (nếu có) | Địa chỉ của bạn</h3>
-            <p>Chọn loại voucher bên dưới và xem thông tin giá tiền| Vui lòng nhập mã địa chỉ giao hàng của bạn</p>
+            <h3>Dùng voucher (nếu có) | Đặt Hàng</h3>
+            <p>Chọn loại voucher bên dưới và xem thông tin giá tiền| nhấn lưu trước khi ấn đặt hàng</p>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-5">
                 <div class="chose_area">
                     <ul class="user_info">
                         {% for item in voucher %}
@@ -108,41 +108,47 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="chose_area">
-                    <ul class="user_info">
-                        {% for item in dia_chi %}
-                        <li class="single_field">
-                            <h3>Địa chỉ:</h3>
-                            <p>{{ item.dia_chi }}</p>
-                            <span>Mã số: {{item.pk}}</span>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="heading">
-            <h3>Đặt hàng</h3>
-            <p>Ấn "lưu" trước khi ấn đặt hàng để tính giá tiền</p>
-        </div>
-        <div class="col-sm-12">
-            <div class="total_area">
-                <form action="{% url 'core:final_value' %}" method="post">
-                    {% csrf_token %}
-                    <ul>
-                        <li>Tổng giá trị giỏ hàng <span>{{subtotal}}.000 VNĐ</span></li>
-                        <li>Mã voucher: <span><input type="number" name="voucher_id" value={{voucher_id}}></span></li>
-                        <li>Voucher <span>{{discount}}.000 VNĐ</span></li>
-                        <li>Giao hàng tới địa chỉ (nhập mã): <span><input type="number" name="dia_chi_id" value={{dia_chi_id}} required></span></li>
-                        <li>Phí ship <span>{{ship}}.000 VNĐ</span></li>
-                        <li>Tổng tiền phải thanh toán <span>{{total}}.000 VNĐ</span></li>
-                    </ul>
-                    <button class="btn btn-default update" type="submit">Lưu</button>
-                    <a class="btn btn-default check_out" href="{% url 'core:don_hang' %}">Đặt hàng</a>
-                    <a class="btn btn-default check_out" href="{% url 'core:cart_clear' %}">Xóa</a>
+<!--            <div class="col-sm-6">-->
+<!--                <div class="chose_area">-->
+<!--                    <ul class="user_info">-->
+<!--                        {% for item in dia_chi %}-->
+<!--                        <li class="single_field">-->
+<!--                            <h3>Địa chỉ:</h3>-->
+<!--                            <p>{{ item.dia_chi }}</p>-->
+<!--                            <span>Mã số: {{item.pk}}</span>-->
+<!--                        </li>-->
+<!--                        {% endfor %}-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+            <div class="col-sm-7">
+                <div class="total_area">
+                    <form action="{% url 'core:final_value' %}" method="post">
+                        {% csrf_token %}
+                        <ul>
+                            <li>Tổng giá trị giỏ hàng <span>{{subtotal}}.000 VNĐ</span></li>
+                            <li>Mã voucher: <span><input type="number" name="voucher_id" value={{voucher_id}}></span></li>
+                            <li>Voucher <span>{{discount}}.000 VNĐ</span></li>
+                            <li>Địa chỉ của bạn:
+                                <span>
+                                    <select name="dia_chi_id">
+                                        <option value="none">{{dia_chi_chon.dia_chi}}</option>
+                                        {%for item in dia_chi %}
+                                        <option type="number" value={{item.pk}}>{{item.dia_chi}}</option>
+                                        {%endfor%}
+                                    </select>
+                                </span>
+                            </li>
+                            <li>Phí ship <span>{{ship}}.000 VNĐ</span></li>
+                            <li>Tổng tiền phải thanh toán <span>{{total}}.000 VNĐ</span></li>
+                        </ul>
+                        <button class="btn btn-default update" type="submit">Lưu</button>
+                        <a class="btn btn-default check_out" href="{% url 'core:don_hang' %}">Đặt hàng</a>
+                        <a class="btn btn-default check_out" href="{% url 'core:cart_clear' %}">Xóa</a>
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
