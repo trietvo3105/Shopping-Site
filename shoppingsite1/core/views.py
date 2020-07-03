@@ -214,7 +214,7 @@ def item_decrement(request, id):
 
 @login_required(login_url='/login/')
 def cart_final_value(request):
-    global voucher_used, shipping_cost, dia_chi_id
+    global voucher_used, shipping_cost, dia_chi_id, total
     now = timezone.now()
     dia_chi = DiaChiKhachHang.objects.filter(user=request.user).order_by("-pk")[:3]
     #dia_chi_chon = None
@@ -252,7 +252,8 @@ def voucher_display(request):
     voucher = Voucher.objects.filter(ngay_bat_dau__lte=now,ngay_het_han__gte=now)
     # voucher = Voucher.objects.all
     #dia_chi = DiaChiKhachHang.objects.filter(user=request.user).order_by("-pk")[:3]
-    return render(request, 'cart/cart_detail.html', {'voucher':voucher,'dia_chi':dia_chi})
+    return render(request, 'cart/cart_detail.html', {'voucher':voucher})
+
 
 @login_required(login_url='/login/')
 def don_hang(request):
@@ -262,7 +263,7 @@ def don_hang(request):
     dia_chi = DiaChiKhachHang.objects.filter(pk=dia_chi_id).first()
     donhang = DonHang.objects.create(khach_hang=request.user, cart=gio_hang, voucher=voucher_used,
                                      thoi_gian_dat_hang=timezone.now(), dia_chi_giao_hang=dia_chi,
-                                     phi_ship=shipping_cost)
+                                     phi_ship=shipping_cost, total=total)
     donhang.save()
     for product in cart:
         remain_item = Sach.objects.get(pk=product['product_id'])
@@ -272,4 +273,12 @@ def don_hang(request):
         order_item = ItemTrongDonHang.objects.create(don_hang=donhang, item=order_item, so_luong=product['quantity'])
         order_item.save()
     cart.clear()
-    return redirect('core:index')
+    return redirect('core:order_detail', id=donhang.pk)
+
+
+@login_required(login_url='/login/')
+def don_hang_detail(request, id):
+    user = request.user
+    target_order = DonHang.objects.get(pk=id, khach_hang=user)
+    context = {'user':user, 'order':target_order}
+    return render(request, 'order/order_detail.html', context)

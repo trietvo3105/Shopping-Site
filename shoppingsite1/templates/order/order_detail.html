@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load static %}
+{% load cart_tag %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Đơn hàng</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.min.js' %}"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="{% static 'images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
+</head><!--/head-->
+
+<body>
+{% include 'navbar.html'%}
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Đơn hàng - {{order.pk}}</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                <tr class="cart_menu">
+                    <td class="image">Sản phẩm</td>
+                    <td class="description"></td>
+                    <td class="price">Đơn giá</td>
+                    <td class="quantity">Số lượng</td>
+                    <td class="total">Thành tiền</td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for items in order.itemtrongdonhang_set.all %}
+                <tr>
+                    <td class="cart_product">
+                        <a href=""><img src="{{items.item.hinh_anh.url}}" alt="" style="width:auto;height:110px;"></a>
+                    </td>
+                    <td class="cart_description">
+                        <h4><a href="">{{items.item.ten}}</a></h4>
+                        <p></p>
+                    </td>
+                    <td class="cart_price">
+                        <p>{{items.item.don_gia}}.000 VNĐ</p>
+                    </td>
+                    <td class="cart_quantity">
+                        {{items.so_luong}}
+                    </td>
+                    <td class="cart_total">
+                        <p class="cart_total_price">{{ items.item.don_gia|multiply:items.so_luong }}00VNĐ</p>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section> <!--/#order_items-->
+
+<section id="do_action">
+    <div class="container">
+        <div class="heading">
+            <h3>Voucher được dùng | Thông tin đơn hàng</h3>
+            <p>Xem thông tin voucher bên trái và thông tin đơn hàng bên phải</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="chose_area">
+                    <ul class="user_info">
+                        {% if order.voucher %}
+                        <img src="{{order.voucher.image.url}}" alt="" style="width:110px;height:110px;">
+                        <h3>{{ order.voucher.tieu_de }}</h3>
+                        <p>{{ order.voucher.gia_tri }}.000 VNĐ</p>
+                        <span>Mã số: {{order.voucher.pk}}</span>
+                        {% else %}
+                        <h3>Đơn hàng này không sử dụng voucher</h3>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <!--            <div class="col-sm-6">-->
+            <!--                <div class="chose_area">-->
+            <!--                    <ul class="user_info">-->
+            <!--                        {% for item in dia_chi %}-->
+            <!--                        <li class="single_field">-->
+            <!--                            <h3>Địa chỉ:</h3>-->
+            <!--                            <p>{{ item.dia_chi }}</p>-->
+            <!--                            <span>Mã số: {{item.pk}}</span>-->
+            <!--                        </li>-->
+            <!--                        {% endfor %}-->
+            <!--                    </ul>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <div class="col-sm-7">
+                <div class="total_area">
+                    <ul>
+                        <li>Họ tên khách hàng <span>{{user.last_name}} {{user.first_name}}</span></li>
+                        <li>Số điện thoại <span>{{user.sdt}}</span></li>
+                        <li>Địa chỉ giao hàng <span>{{order.dia_chi_giao_hang.dia_chi}}</span></li>
+                        <li>Tổng giá trị đơn hàng <span>{{order.total}}.000 VNĐ</span></li>
+                        <li>Phí ship <span>{{order.phi_ship}}.000 VNĐ</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--/#user,dia chi,voucher,tong tien-->
+
+
+{% include 'footer.html' %}
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

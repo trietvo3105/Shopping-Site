@@ -16,7 +16,7 @@ class DonHang(models.Model):
     khach_hang = models.ForeignKey(KhachHangUser, on_delete=models.CASCADE)
     cart = models.ForeignKey(GioHang, on_delete=models.CASCADE)
     voucher = models.ForeignKey(Voucher, on_delete=models.CASCADE, null=True)
-    #total = models.IntegerField(default=10)
+    total = models.IntegerField(default=10)
     # tao_vao = models.DateTimeField('Tạo vào', auto_now_add=True)
     #items = models.ForeignKey(ItemTrongGioHang, on_delete=models.CASCADE, null=True)
     def __str__(self):
