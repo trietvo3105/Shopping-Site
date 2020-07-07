@@ -275,10 +275,14 @@ def don_hang(request):
     cart.clear()
     return redirect('core:order_detail', id=donhang.pk)
 
-
 @login_required(login_url='/login/')
 def don_hang_detail(request, id):
     user = request.user
     target_order = DonHang.objects.get(pk=id, khach_hang=user)
     context = {'user':user, 'order':target_order}
     return render(request, 'order/order_detail.html', context)
+
+@login_required(login_url='/login/')
+def don_hang_list(request):
+    order_list = DonHang.objects.filter(khach_hang=request.user).order_by("-pk")
+    return render(request,'order/order_user_list.html', {'order_list':order_list})

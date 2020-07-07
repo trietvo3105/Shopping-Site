@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title %}Đơn hàng{%endblock%}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 padding-right">
+                <h2>Đơn hàng của bạn</h2>
+                     <ul>
+                         {%for items in order_list %}
+                         <li><a href="{% url 'core:order_detail' items.id%}"> Đơn hàng mã: {{items.pk}} </a></li>
+                         {%endfor%}
+                     </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

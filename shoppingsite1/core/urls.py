@@ -30,7 +30,7 @@ urlpatterns = [
          views.item_decrement, name='item_decrement'),
     path('cart/final-value/', views.cart_final_value, name='final_value'),
     path('order/order_detail/<int:id>/', views.don_hang_detail, name='order_detail'),
-
+    path('order/order_user_list/',views.don_hang_list,name='order_user_list')
 ]
 
 if settings.DEBUG:

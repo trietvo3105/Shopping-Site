@@ -39,6 +39,7 @@
 								<li><a href="{% url 'core:cart_detail' %}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 								{% if user.is_authenticated %}
 									<li><a href="{% url 'core:profile' %}"><i class="fa fa-user"></i>Xin chào! {{ user.username }}</a></li>
+									<li><a href="{%url 'core:order_user_list'%}">Đơn Hàng</a></li>
                     				<li><a  href="{% url 'core:logout' %}">Đăng xuất</a></li>
 								{% else %}
 									<li><a href="{% url 'core:login' %}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
