@@ -74,9 +74,9 @@ class HomePage(View):
     def get(self, request):
         Tn_items = Sach.objects.filter(loai_sach="3").order_by("-pk")[:6]
         Kh_items = Sach.objects.filter(loai_sach="4").order_by("-pk")[:6]
-        Vh_items = Sach.objects.filter(loai_sach="1").order_by("-pk")[:6]
-        Nt_items = Sach.objects.filter(loai_sach="2").order_by("-pk")[:6]
-        Nv_items = Sach.objects.filter(loai_sach="5").order_by("-pk")[:6]
+        Vh_items = Sach.objects.filter(loai_sach="5").order_by("-pk")[:6]
+        Nt_items = Sach.objects.filter(loai_sach="6").order_by("-pk")[:6]
+        Nv_items = Sach.objects.filter(loai_sach="7").order_by("-pk")[:6]
         context = {
             'Tn_items': Tn_items,
             'Kh_items': Kh_items,
@@ -109,24 +109,30 @@ class KhoaHoc(ThieuNhi):
 class NgoaiVan(ThieuNhi):
     def __init__(self, **kwargs):
         super(**kwargs)
-        self.loai_sach = "5"
+        self.loai_sach = "7"
         self.link = 'ngoaivan/ngoaivan.html'
 
 
 class VanHoc(ThieuNhi):
     def __init__(self, **kwargs):
         super(**kwargs)
-        self.loai_sach = "1"
+        self.loai_sach = "5"
         self.link = 'vanhoc/vanhoc.html'
 
 
 class NgheThuat(ThieuNhi):
     def __init__(self, **kwargs):
         super(**kwargs)
-        self.loai_sach = "2"
+        self.loai_sach = "6"
         self.link = 'nghethuat/nghethuat.html'
 
-
+class Uudai(View):
+    def get(self, request):
+        posts = Voucher.objects.all().order_by("-pk")
+        paginator = Paginator(posts, 3)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+        return render(request,'voucher/voucher.html', {'posts': posts})
 
 @login_required
 def profile(request):

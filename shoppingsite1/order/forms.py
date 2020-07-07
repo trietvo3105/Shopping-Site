@@ -1,5 +1,6 @@
 from django import forms
-from .models import KhachHangUser, Sach
+from user.models import KhachHangUser
+from book.models import Sach
 
 class Order(forms.Form):
     class Meta:

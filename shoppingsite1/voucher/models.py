@@ -1,6 +1,7 @@
 from django.db import models
 from user.models import KhachHangUser
 from datetime import date
+
 # Create your models here.
 
 

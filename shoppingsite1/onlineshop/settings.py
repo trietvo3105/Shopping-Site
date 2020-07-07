@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'book',
     'cart_origin',
-    'order',
     'user',
     'voucher',
     'core',
     'cart',
+    'order',
 ]
 
 MIDDLEWARE = [
