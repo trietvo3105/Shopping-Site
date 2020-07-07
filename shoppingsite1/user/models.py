@@ -19,4 +19,4 @@ class DiaChiKhachHang(models.Model):
     #     unique_together = (('user', 'dia_chi'),)
 
     def __str__(self):
-        return str(self.user)
+        return str(self.dia_chi) + ', ' + str(self.pk)

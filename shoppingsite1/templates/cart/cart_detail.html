@@ -62,7 +62,7 @@
                         <p>{{value.loai_sach}}</p>
                     </td>
                     <td class="cart_price">
-                        <p>{{value.price}}</p>
+                        <p>{{value.price}}.000 VNĐ</p>
                     </td>
                     <td class="cart_quantity">
                         <div class="cart_quantity_button">
@@ -73,7 +73,7 @@
                         </div>
                     </td>
                     <td class="cart_total">
-                        <p class="cart_total_price">{{ value.price|multiply:value.quantity }} VNĐ</p>
+                        <p class="cart_total_price">{{ value.price|multiply:value.quantity }}00VNĐ</p>
                     </td>
                     <td class="cart_delete">
                         <a class="cart_quantity_delete" href="{% url 'core:item_clear' key %}"><i
@@ -90,11 +90,11 @@
 <section id="do_action">
     <div class="container">
         <div class="heading">
-            <h3>Dùng voucher (nếu có) | Đặt hàng</h3>
-            <p>Chọn loại voucher bên dưới và xem thông tin giá tiền</p>
+            <h3>Dùng voucher (nếu có) | Đặt Hàng</h3>
+            <p>Chọn loại voucher bên dưới và xem thông tin giá tiền| nhấn lưu trước khi ấn đặt hàng</p>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-5">
                 <div class="chose_area">
                     <ul class="user_info">
                         {% for item in voucher %}
@@ -108,7 +108,21 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-6">
+<!--            <div class="col-sm-6">-->
+<!--                <div class="chose_area">-->
+<!--                    <ul class="user_info">-->
+<!--                        {% for item in dia_chi %}-->
+<!--                        <li class="single_field">-->
+<!--                            <h3>Địa chỉ:</h3>-->
+<!--                            <p>{{ item.dia_chi }}</p>-->
+<!--                            <span>Mã số: {{item.pk}}</span>-->
+<!--                        </li>-->
+<!--                        {% endfor %}-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+            <div class="col-sm-7">
                 <div class="total_area">
                     <form action="{% url 'core:final_value' %}" method="post">
                         {% csrf_token %}
@@ -116,6 +130,16 @@
                             <li>Tổng giá trị giỏ hàng <span>{{subtotal}}.000 VNĐ</span></li>
                             <li>Mã voucher: <span><input type="number" name="voucher_id" value={{voucher_id}}></span></li>
                             <li>Voucher <span>{{discount}}.000 VNĐ</span></li>
+                            <li>Địa chỉ của bạn:
+                                <span>
+                                    <select name="dia_chi_id">
+                                        <option value="none">{{dia_chi_chon.dia_chi}}</option>
+                                        {%for item in dia_chi %}
+                                        <option type="number" value={{item.pk}}>{{item.dia_chi}}</option>
+                                        {%endfor%}
+                                    </select>
+                                </span>
+                            </li>
                             <li>Phí ship <span>{{ship}}.000 VNĐ</span></li>
                             <li>Tổng tiền phải thanh toán <span>{{total}}.000 VNĐ</span></li>
                         </ul>
