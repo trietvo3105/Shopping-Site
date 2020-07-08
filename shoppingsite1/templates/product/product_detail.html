@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} Chi tiết sản phẩm {% endblock %}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 padding-right">
+                <div class="product-details"><!--product-details-->
+                    <div class="col-sm-5">
+                        <div class="view-product">
+                            <img src="{{sach.hinh_anh.url}}" alt="" style="width:auto;height:520px;">
+                            <h3>SÁCH</h3>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="product-information"><!--/product-information-->
+                            <h2>{{ sach.ten }}</h2>
+                            <p>Mã sách: {{sach.pk}}</p>
+                            <p>Loại sách: {{sach.loai_sach.ten}}</p>
+                            <span>
+                                <span>{{sach.don_gia}}.000 VNĐ</span>
+                                <a href="{% url 'core:cart_add' sach.pk %}" class="btn btn-fefault cart"><i
+                                        class="fa fa-shopping-cart"></i>Add to cart</a>
+                            </span>
+                            <p><b>Tác giả:</b> {{sach.tac_gia}}</p>
+                            <p><b>Nhà xuất bản:</b> {{sach.nxb}}</p>
+                            <p><b>Năm xuất bản:</b> {{sach.nam_xb}}</p>
+                            <p><b>Mô tả:</b> {{sach.mo_ta}}</p>
+                            <p><b>Số lượng còn lại:</b> {{sach.so_luong_con}}</p>
+                        </div><!--/product-information-->
+                    </div>
+                </div><!--/product-details-->
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

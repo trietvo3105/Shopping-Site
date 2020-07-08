@@ -34,7 +34,7 @@ class DangNhap(View):
             return HttpResponse('Tài khoản không tồn tại!')
         else:
             login(request, user)
-            return render(request, 'homepage/index.html')
+            return redirect('core:index')
 
 
 class UserView(LoginRequiredMixin, View):
@@ -126,6 +126,11 @@ class NgheThuat(ThieuNhi):
         self.loai_sach = "6"
         self.link = 'nghethuat/nghethuat.html'
 
+
+def product_detail(request, id):
+    sach = Sach.objects.get(pk=id)
+    context = {'sach':sach}
+    return render(request, 'product/product_detail.html', context)
 
 
 @login_required

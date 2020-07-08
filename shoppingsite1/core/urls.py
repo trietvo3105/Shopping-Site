@@ -18,6 +18,7 @@ urlpatterns = [
     path('vanhoc/', VanHoc.as_view(), name='vanhoc'),
     path('nghethuat/', NgheThuat.as_view(), name='nghethuat'),
     path('ngoaivan/', NgoaiVan.as_view(), name='ngoaivan'),
+    path('product-detail/<int:id>/', views.product_detail, name='product_detail'),
     path('cart/cart_add/<int:id>/', views.cart_add, name='cart_add'),
     path('cart/cart_clear/', views.cart_clear, name='cart_clear'),
     path('cart/cart-detail/', views.cart_detail,name='cart_detail'),
