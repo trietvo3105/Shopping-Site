@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import DangNhap, UserView, dang_ky, HomePage, profile, password_change, ThieuNhi, KhoaHoc,NgoaiVan, VanHoc, NgheThuat
+from .views import DangNhap, UserView, dang_ky, HomePage, profile, password_change, ThieuNhi, KhoaHoc,NgoaiVan, VanHoc, NgheThuat, Uudai
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from . import views
@@ -30,7 +30,8 @@ urlpatterns = [
          views.item_decrement, name='item_decrement'),
     path('cart/final-value/', views.cart_final_value, name='final_value'),
     path('order/order_detail/<int:id>/', views.don_hang_detail, name='order_detail'),
-    path('order/order_user_list/',views.don_hang_list,name='order_user_list')
+    path('order/order_user_list/',views.don_hang_list,name='order_user_list'),
+    path('voucher/', Uudai.as_view(),name='uudai')
 ]
 
 if settings.DEBUG:

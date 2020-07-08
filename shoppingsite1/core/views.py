@@ -34,7 +34,7 @@ class DangNhap(View):
             return HttpResponse('Tài khoản không tồn tại!')
         else:
             login(request, user)
-            return render(request, 'homepage/index.html')
+            return redirect('core:index')
 
 
 class UserView(LoginRequiredMixin, View):
@@ -126,7 +126,13 @@ class NgheThuat(ThieuNhi):
         self.loai_sach = "6"
         self.link = 'nghethuat/nghethuat.html'
 
-
+class Uudai(View):
+    def get(self, request):
+        posts = Voucher.objects.all().order_by("-pk")
+        paginator = Paginator(posts, 3)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+        return render(request,'voucher/voucher.html', {'posts': posts})
 
 @login_required
 def profile(request):
