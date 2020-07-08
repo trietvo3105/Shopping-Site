@@ -286,3 +286,14 @@ def don_hang_detail(request, id):
 def don_hang_list(request):
     order_list = DonHang.objects.filter(khach_hang=request.user).order_by("-pk")
     return render(request,'order/order_user_list.html', {'order_list':order_list})
+
+# def tim_kiem(query=None):
+#     queryset = []
+#     queries = query.split(" ")
+#     for q in queries:
+#         posts = Sach.objects.filter(
+#             Q(title_icontrains=q)
+#         ).distinct()
+#         for post in posts:
+#             queryset.append(post)
+#     return list(set(queryset))

@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
+admin.site.site_header = 'boOK admin'
+admin.site.site_title = 'boOK admin'
+admin.site.index_title = 'boOK administration'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),

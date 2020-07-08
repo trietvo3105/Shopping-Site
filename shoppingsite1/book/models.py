@@ -24,7 +24,7 @@ class Sach(models.Model):
     don_gia = models.IntegerField(default=0)
     loai_sach = models.ForeignKey(LoaiSach, on_delete=models.CASCADE)
     def __str__(self):
-        return self.ten + '(' + str(self.pk) + ')'
+        return self.ten + ' (' + str(self.pk) + ')'
 
 
 

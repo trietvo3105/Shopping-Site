@@ -20,7 +20,7 @@ class DonHang(models.Model):
     # tao_vao = models.DateTimeField('Tạo vào', auto_now_add=True)
     #items = models.ForeignKey(ItemTrongGioHang, on_delete=models.CASCADE, null=True)
     def __str__(self):
-        return str(self.khach_hang) + ', ' + str(self.pk)
+        return str(self.khach_hang) + ' (' + str(self.pk)+ ')'
 
 
 # class XuLyDonHang(models.Model):
