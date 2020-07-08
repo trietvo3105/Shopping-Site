@@ -291,3 +291,12 @@ def don_hang_detail(request, id):
 def don_hang_list(request):
     order_list = DonHang.objects.filter(khach_hang=request.user).order_by("-pk")
     return render(request,'order/order_user_list.html', {'order_list':order_list})
+
+
+class Uudai(View):
+    def get(self, request):
+        posts = Voucher.objects.all().order_by("-pk")
+        paginator = Paginator(posts, 3)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+        return render(request,'voucher/voucher.html', {'posts': posts})

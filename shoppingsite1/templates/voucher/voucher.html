@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Ưu Đãi</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+<!--    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">-->
+<!--    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">-->
+    <link rel="stylesheet" href="css/elegant-icons.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/slicknav.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--[if lt IE 9]>
+    <script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.min.js' %}"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="{% static 'images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head><!--/head-->
+
+<body>
+{% include 'navbar.html'%}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-15 padding-right">
+                    <div class="features_items"><!--Tn_items-->
+                        <h2 class="title text-center"><a style="text-decoration: none; color:orange;"
+                                                         href="{% url 'core:uudai' %}">Ưu Đãi</a></h2>
+                            {% for item in posts %}
+                                <div class="col-lg-6">
+                                    <div class="home__about__text">
+                                        <div class="section-title">
+                                            <h1>{{item.tieu_de}}</h1>
+                                            <h3 style="color:red">Nhập Mã: {{item.pk}}</h3>
+                                            <p>{{item.noi_dung}}</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="home__about__item">
+                                                    <h4>Thời gian</h4>
+                                                    <p>Bắt Đầu: {{item.ngay_bat_dau}}</p>
+                                                    <p>Kết thúc: {{item.ngay_het_han}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="home__about__item">
+                                                    <h4>Giá trị</h4>
+                                                    <p>{{item.gia_tri}}.000VNĐ</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 offset-lg-1">
+                                    <div class="home__about__img">
+                                        <img src="{{item.image.url}}" alt="" style="width:450px;height:300px;">
+                                    </div>
+                                </div>
+                            {% endfor %}
+                    </div>
+                </div>
+                <div class="pagination">
+                        {% if posts.has_previous %}
+                        <!--                <a href="?page=1"> << </a>-->
+                        <a style="text-decoration: none;" href="?page={{ posts.previous_page_number}}" class="previouss round">
+                        </a>
+                        {% endif %}
+                        {% for num in posts.paginator.page_range %}
+                        {% if posts.number == num %}
+                        <strong><a style="text-decoration: none; color:orange;"
+                                   href="?page={{ posts.number }}">{{posts.number}}</a></strong>
+                        {% elif posts.number != num %}
+                        <a style="text-decoration: none; color:orange;" href="?page={{ num }}">{{num}}</a>
+                        {% endif %}
+                        {% endfor %}
+                        {% if posts.has_next %}
+                        <a style="text-decoration: none;" href="?page={{ posts.next_page_number }}" class="nextt round">
+                        </a>
+                        <!--                    <a href="?page={{ posts.paginator.num_pages }}"> >> </a>-->
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% include 'footer.html' %}
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/price-range.js' %}"></script>
+<script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
