@@ -34,7 +34,7 @@ class DangNhap(View):
             return HttpResponse('Tài khoản không tồn tại!')
         else:
             login(request, user)
-            return render(request, 'homepage/index.html')
+            return redirect('core:index')
 
 
 class UserView(LoginRequiredMixin, View):
