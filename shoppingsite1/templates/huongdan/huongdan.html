@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title %} Hướng dẫn {%endblock%}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-15 padding-right">
+                <div class="features_items"><!--Tn_items-->
+                    <h2 class="title text-center"><a style="text-decoration: none; color:orange;"
+                                                     href="{% url 'core:huongdan' %}">Hướng dẫn.id</a></h2>
+                    <div class="row mb-3 justify-content-center">
+                        <div class="col-md-12 text-left">
+                            <ul>
+                                <li class="lead" style="list-style-type:decimal"><strong>Đăng ký/Đăng nhập</strong></li>
+                                <p class="lead">Phía trên góc phải trang web có ô <strong>"Đăng nhập"</strong>, khách hàng chọn vào, sẽ dẫn đến trang <strong>Đăng nhập</strong>. Tại đây khách hàng sẽ tiến hành điền <i>"Tên tài khoản"</i> và <i>"Mật khẩu</i>. Khách hàng có thể chọn ô <i>"Ghi nhớ đăng nhập"</i> để trang web lưu tài khoản của quý khách để tiện cho việc đăng nhập những lần sau. Nếu khách hàng chưa có tài khoản, quý khách có thể chọn <strong>"Đăng ký"</strong> ngay bên cạnh để tiến hành đăng ký tài khoản mới. Tại mẫu đăng ký, quý khách vui lòng điền các thông tin cần thiết như <i>"Tên tài khoản"</i>, <i>"Email</i>, <i>"Mật khẩu</i>. Sau đó quý khách chỉ cần chọn <strong>Đăng ký </strong> thì quý khách đã tạo được tài khoản tại Book.com </strong></p>
+                                <li class="lead" style="list-style-type:decimal"><strong>Thay đổi thông tin</strong></li>
+                                <p class="lead">Phía trên góc phải trang web có ô <strong>"Đăng nhập"</strong>, khách hàng chọn vào, sẽ dẫn đến trang <strong>Thay đổi thông tin</strong>.Tại trang này, quý khách có thể thay đổi các thông tin như <i>"Họ"</i>, <i>"Tên"</i>, <i>"Tên tài khoản"</i>, <i>"Email"</i> cũng như có thể thay đổi <i>"Ảnh đại diện"</i>. Quý khách vui lòng điền <strong>"Địa chỉ</strong> và <strong>"Số điện thoại"</strong> để quý khách có thể đặt hàng và Book.com có thể thuận tiện trong việc giao hàng. Cuối cùng quý khách chọn <strong>Cập nhật</strong> để hoàn tất việc thay đổi thông tin</p>
+                                <li class="lead" style="list-style-type:decimal"><strong>Thay đổi mật khẩu</strong></li>
+                                <p class="lead">Khi quý khách có nhu cầu thay đổi mật khẩu do các mục đích, nhu cầu khác nhau, quý khách có thể chọn <strong>Thay đổi mật khẩu</strong> trong trang <strong>Thay đổi thông tin</strong>. Khi vào trang <strong>Thay đổi mật khẩu</strong>, quý khách vui lòng nhập <i>"Mật khẩu cũ"</i> và <i>"Mật khẩu mới"</i> cũng như là <i>"Xác nhận mật khẩu"</i>. Cuối cùng chọn <strong>Cập nhật mật khẩu </strong> để hoàn tất quá trình</p>
+                            </ul>
+
+                        </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
