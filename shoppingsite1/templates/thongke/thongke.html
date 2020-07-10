@@ -50,33 +50,41 @@
                                             <summary><strong>Số lượng sách thiếu nhi:</strong> {{ num_thieunhi }} quyển</summary>
                                             <ul>
                                                 {%for item in list_thieunhi%}
-                                                <li>{{item.ten}}: {{item.so_luong_con}} quyển</li>
+                                                <li style="list-style-type:disc">{{item.ten}}: {{item.so_luong_con}} quyển</li>
                                                 {%endfor%}
                                             </ul>
                                         </details>
                                         <details>
                                             <summary><strong>Số lượng sách khoa học:</strong> {{ num_khoahoc }} quyển</summary>
-                                            {%for item in list_khoahoc%}
-                                                <li>{{item.ten}}: {{item.so_luong_con}} quyển</li>
-                                            {%endfor%}
+                                            <ul>
+                                                {%for item in list_khoahoc%}
+                                                    <li style="list-style-type:disc">{{item.ten}}: {{item.so_luong_con}} quyển</li>
+                                                {%endfor%}
+                                            </ul>
                                         </details>
                                         <details>
                                             <summary><strong>Số lượng sách ngoại văn:</strong> {{ num_ngoaivan }} quyển</summary>
-                                            {%for item in list_ngoaivan%}
-                                                <li>{{item.ten}}: {{item.so_luong_con}} quyển</li>
-                                            {%endfor%}
+                                            <ul>
+                                                {%for item in list_ngoaivan%}
+                                                    <li style="list-style-type:disc">{{item.ten}}: {{item.so_luong_con}} quyển</li>
+                                                {%endfor%}
+                                            </ul>
                                         </details>
                                         <details>
                                         <summary><strong>Số lượng sách văn học:</strong> {{ num_vanhoc }} quyển</summary>
-                                            {%for item in list_vanhoc%}
-                                            <li>{{item.ten}}: {{item.so_luong_con}} quyển</li>
-                                            {%endfor%}
+                                            <ul>
+                                                {%for item in list_vanhoc%}
+                                                    <li style="list-style-type:disc">{{item.ten}}: {{item.so_luong_con}} quyển</li>
+                                                {%endfor%}
+                                            </ul>
                                         </details>
                                         <details>
                                         <summary><strong>Số lượng sách nghệ thuật:</strong> {{ num_nghethuat }} quyển</summary>
-                                            {%for item in list_nghethuat%}
-                                            <li>{{item.ten}}: {{item.so_luong_con}} quyển</li>
-                                            {%endfor%}
+                                            <ul>
+                                                {%for item in list_nghethuat%}
+                                                <li style="list-style-type:disc">{{item.ten}}: {{item.so_luong_con}} quyển</li>
+                                                {%endfor%}
+                                            </ul>
                                         </details>
                                     </ul>
                                 </ul>
