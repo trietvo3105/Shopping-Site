@@ -354,3 +354,6 @@ def chinhsach(request):
 
 def huongdan(request):
     return render(request, 'huongdan/huongdan.html')
+
+def lienhe(request):
+    return render(request, 'lienhe/lienhe.html')
