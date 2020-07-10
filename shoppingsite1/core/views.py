@@ -12,6 +12,9 @@ from user.forms import FormDangKy, CustomUserUpdateForm, AddressUpdateForm
 from user.models import DiaChiKhachHang
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from book.models import Sach
+from django.db.models import Sum
+from django.db.models.functions import Coalesce
 from django.core.paginator import Paginator
 from book.models import *
 from voucher.models import Voucher
@@ -300,3 +303,54 @@ class Uudai(View):
         page = request.GET.get('page')
         posts = paginator.get_page(page)
         return render(request,'voucher/voucher.html', {'posts': posts})
+
+
+
+class thongke(LoginRequiredMixin, View):
+    login_url = '/login/'
+    def get(self, request):
+        num_sach = Sach.objects.all().count
+        num_donhangthang = list(ItemTrongDonHang.objects.aggregate(Sum('so_luong')).values())[0]
+        # donhangs = Donhang.objects.filter(thoi_gian_dat_hang__date=date.today())
+        # num_donhangngay = list(ItemTrongDonHang.objects.filter(DonHang__thoi_gian_dat_hang__date=date.today()).aggregate(Sum('so_luong')).value())[0]
+        # num_donhangngay = ItemTrongDonHang.objects.filter(DonHang__thoi_gian_dat_hang__date=date.today())
+        num_giohang = GioHang.objects.all().count
+        num_taikhoan = KhachHangUser.objects.all().count
+        num_sosachconlai = list(Sach.objects.aggregate(Sum('so_luong_con')).values())[0]
+        num_sosachnhap = list(Sach.objects.aggregate(Sum('so_luong_nhap')).values())[0]
+        num_voucher = Voucher.objects.all().count
+        num_thieunhi = list(Sach.objects.filter(loai_sach="3").aggregate(Sum('so_luong_con')).values())[0]
+        num_khoahoc = list(Sach.objects.filter(loai_sach="4").aggregate(Sum('so_luong_con')).values())[0]
+        num_ngoaivan = list(Sach.objects.filter(loai_sach="7").aggregate(Sum('so_luong_con')).values())[0]
+        num_vanhoc = list(Sach.objects.filter(loai_sach="5").aggregate(Sum('so_luong_con')).values())[0]
+        num_nghethuat = list(Sach.objects.filter(loai_sach="6").aggregate(Sum('so_luong_con')).values())[0]
+        list_thieunhi = Sach.objects.filter(loai_sach="3").order_by('so_luong_con')
+        list_khoahoc = Sach.objects.filter(loai_sach="4").order_by('so_luong_con')
+        list_ngoaivan = Sach.objects.filter(loai_sach="7").order_by('so_luong_con')
+        list_vanhoc = Sach.objects.filter(loai_sach="5").order_by('so_luong_con')
+        list_nghethuat = Sach.objects.filter(loai_sach="6").order_by('so_luong_con')
+        num_doanhthuthang = DonHang.objects.filter(thoi_gian_dat_hang__month=date.today().month).aggregate(sum=Sum('total'))['sum'] or 000
+        num_doanhthungay = DonHang.objects.filter(thoi_gian_dat_hang__date=date.today()).aggregate(sum=Sum('total'))['sum'] or 000
+        now = timezone.now()
+        num_voucher_con = Voucher.objects.filter(ngay_bat_dau__lte=now, ngay_het_han__gte=now).count
+
+        context = {
+            'num_books': num_sach,
+            'num_donhangthang': num_donhangthang,
+            # 'num_donhangngay': num_donhangngay,
+            'num_giohang': num_giohang,
+            'num_taikhoan': num_taikhoan,
+            'num_sosachconlai': num_sosachconlai, 'num_sosachnhap': num_sosachnhap,
+            'num_voucher': num_voucher, 'num_voucher_con': num_voucher_con,
+            'num_thieunhi': num_thieunhi, 'num_khoahoc': num_khoahoc, 'num_ngoaivan': num_ngoaivan, 'num_vanhoc': num_vanhoc, 'num_nghethuat': num_nghethuat,
+            'list_thieunhi': list_thieunhi, 'list_khoahoc': list_khoahoc, 'list_ngoaivan': list_ngoaivan, 'list_vanhoc': list_vanhoc, 'list_nghethuat': list_nghethuat,
+            'num_doanhthuthang': num_doanhthuthang, 'num_doanhthungay': num_doanhthungay,
+        }
+        return render(request, 'thongke/thongke.html', context)
+
+
+def chinhsach(request):
+    return render(request, 'chinhsach/chinhsach.html')
+
+def huongdan(request):
+    return render(request, 'huongdan/huongdan.html')

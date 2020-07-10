@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title %} Chính sách {%endblock%}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-15 padding-right">
+                <div class="features_items"><!--Tn_items-->
+                    <h2 class="title text-center"><a style="text-decoration: none; color:orange;"
+                                                     href="{% url 'core:chinhsach' %}">Chính sách</a></h2>
+                    <div class="row mb-3 justify-content-center">
+                        <div class="col-md-12 text-left">
+                            <p class="lead">Chúng tôi luôn trân trọng sự tin tưởng và ủng hộ của khách hàng khi đặt mua sản phẩm tại Book.com. Do đó chúng tôi luôn cố gắng hoàn thiện dịch vụ tốt nhất phục vụ mọi nhu cầu mua sắm của quý khách.</p>
+                            <p class="lead">Book.com chúng tôi luôn luôn cam kết tất cả các sản phẩm bán tại Book.com 100% là những sản phẩm chất lượng và xuất xứ nguồn gốc rõ ràng, hợp pháp cũng như an toàn cho người tiêu dùng.</p>
+                            <p class="lead">Để việc mua sắm của quý khách tại Book.com là trải nghiệm dịch vụ thân thiện, chúng tôi hy vọng quý khách lúc nhận hàng kiểm tra kỹ lại:</p>
+                            <ul>
+                                <li class="lead" style="list-style-type:disc">Số lượng.</li>
+                                <li class="lead" style="list-style-type:disc">Tên sản phẩm và chất lượng sản phẩm.</li>
+                                <li class="lead" style="list-style-type:disc">Thông tin sản phẩm, thông tin người nhận <strong>(Đối chiếu với thông tin trên phiếu giao hàng được bỏ trong hộp)</strong> trong lúc nhận hàng trước khi ký nhận và thanh toán tiền cho nhân viên giao nhận.</li>
+                            </ul>
+                            <p class="lead">Tuy nhiên để quý khách yên tâm hơn trong việc mua sắm và trải nghiệm dịch vụ của Book.com, chúng tôi xây dựng chính sách đổi/ trả/ hoàn tiền trên tinh thần bảo vệ quyền lợi người tiêu dùng nhằm cam kết với quý khách về chất lượng sản phẩm và dịch vụ của chúng tôi.</p>
+                            <ul>
+                                <li class="lead" style="list-style-type:decimal"><strong>Thời gian giải quyết đổi trả:</strong></li>
+                                <p class="lead">Đối với đơn hàng đã giao: tối đa 30 ngày</p>
+                                <p class="lead">Đối với đơn hàng đang trên đường đi: khi nhận được yêu cầu từ khách hàng</p>
+                                <li class="lead" style="list-style-type:decimal"><strong>Điều kiện đổi trả:</strong></li>
+                                <ul>
+                                    <li class="lead" style="list-style-type:disc">Sản phẩm còn nguyên bao bì như hiện trạng ban đầu.</li>
+                                    <li class="lead" style="list-style-type:disc">Sản phầm còn đầy đủ phụ kiện, quà tặng khuyến mãi kèm theo.</li>
+                                    <li class="lead" style="list-style-type:disc">Hóa đơn GTGT ( nếu có)</li>
+                                </ul>
+                                <li class="lead" style="list-style-type:decimal"><strong>Chính sách đổi trả:</strong></li>
+                                <p class="lead">Tất cả các đơn hàng đổi trả cần được chụp hình và gửi email về info@book.com với tiêu đề “Đổi Trả Đơn Hàng #100xxx”:</p>
+                                <ul>
+                                    <li class="lead" style="list-style-type:lower-roman"><strong>Lỗi kỹ thuật của sản phẩm - do nhà cung cấp (sách thiếu trang, sút gáy, trùng nội dung,..): </strong>Đổi mới cùng sản phẩm</li>
+                                    <li class="lead" style="list-style-type:lower-roman"><strong>Lý do đổi/trả sản phẩm do khách đặt nhầm hoặc không còn nhu cầu: </strong>Hỗ trợ thu hồi và hoàn tiền 100% giá trị sản phẩm cho quý khách hàng.<i>(Sản phẩm phải còn nguyên vẹn, không có dấu hiệu đã qua sử dụng)</i></li>
+                                    <li class="lead" style="list-style-type:lower-roman"><strong>Giao nhầm:</strong> Đổi lại đúng sản phẩm đã đặt.</li>
+                                    <li class="lead" style="list-style-type:lower-roman"><strong>Giao thiếu:</strong> Giao bù thêm số lượng còn thiếu theo đơn hàng</li>
+                                    <li class="lead" style="list-style-type:lower-roman"><strong>Chất lượng hàng hóa kém do vận chuyển:</strong> Khi quý khách hàng nhận gói hàng bị móp méo, ướt, chúng tôi khuyến cáo khách hàng nên kiểm tra thực tế hàng hóa bên trong ngay thời điểm nhận hàng, vui lòng phản ảnh hiện trang hàng hóa lên bill nhận hàng từ phía nhân viên giao nhận và liên lạc với chúng tôi về Hotline trong vòng 48h để được hỗ trợ giải quyết cụ thể.</li>
+                                    <li class="lead" style="list-style-type:lower-roman"><strong>Hình thức sản phẩm không giống mô tả ban đầu:</strong> Hãy liên hệ với chúng tôi qua số Hotline</li>
+                                </ul>
+                                <li class="lead" style="list-style-type:decimal"><strong>Cách thức chuyển sản phẩm đổi trả về Book.com:</strong></li>
+                                <p class="lead">Khi yêu cầu đổi trả được giải quyết, quý khách vui lòng đóng gói sản phẩm như hiện trạng khi nhận hàng ban đầu (bao gồm sản phẩm, quà tặng, phụ kiện kèm theo sản phẩm,…nếu có) kèm theo hóa đơn giá trị gia tăng của Book.com</p>
+                            </ul>
+                            <p class="lead"></p>
+                            <p class="lead"></p>
+                            <p class="lead"></p>
+
+
+                        </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

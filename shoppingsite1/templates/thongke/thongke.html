@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %} Thông tin người dùng {% endblock %}
+{% block content %}
+
+<section id="form"><!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-20 col-sm-offset-1">
+                <div class="profile-form"><!--login form-->
+
+                    <div class="col-sm-offset-4">
+                        <h1><b>Thống kê</b></h1>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Thống kê kinh doanh</h2>
+                            <ul >
+                                <li><strong>Số tài khoản:</strong> {{ num_taikhoan }}</li>
+                                <li><strong>Số lượng đơn hàng:</strong> {{ num_giohang }}</li>
+                                <li><strong>Số lượng sách bán ra:</strong> {{ num_donhangthang}}</li>
+<!--                                <ul>-->
+<!--                                    <li><strong>Số lượng sách bán ra trong tháng:</strong> {{ num_donhangthang}}</li>-->
+<!--                                    <li><strong>Số lượng sách bán ra trong ngày:</strong> {{ num_donhangngay}}</li>-->
+<!--                                </ul>-->
+                                <li><strong>Số lượng voucher:</strong> {{ num_voucher }}</li>
+                                <ul >
+                                    <li><strong>trong đó số lượng voucher còn hạn:</strong> {{ num_voucher_con }}</li>
+                                </ul>
+                                <li><strong>Doanh thu:</strong></li>
+                                <ul>
+                                    <li><strong>Doanh thu trong tháng:</strong> {{ num_doanhthuthang }}.000 đồng </li>
+                                    <li><strong>Doanh thu trong ngày:</strong> {{ num_doanhthungay }}.000 đồng </li>
+                                </ul>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <form method="post" action="{% url 'core:thongke' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <h1>Thống kê sách</h1>
+                                <ul>
+                                    <li><strong>Số lượng đầu sách:</strong> {{ num_books }} quyển</li>
+                                    <li><strong>Số sách nhập:</strong> {{ num_sosachnhap }} quyển</li>
+                                    <li><strong>Số sách còn lại:</strong> {{ num_sosachconlai }} quyển</li>
+                                    <ul>
+                                        <details>
+                                            <summary><strong>Số lượng sách thiếu nhi:</strong> {{ num_thieunhi }} quyển</summary>
+                                            <ul>
+                                                {%for item in list_thieunhi%}
+                                                <li style="list-style-type:disc">{{item.ten}}: {{item.so_luong_con}} quyển</li>
+                                                {%endfor%}
+                                            </ul>
+                                        </details>
+                                        <details>
+                                            <summary><strong>Số lượng sách khoa học:</strong> {{ num_khoahoc }} quyển</summary>
+                                            <ul>
+                                                {%for item in list_khoahoc%}
+                                                    <li style="list-style-type:disc">{{item.ten}}: {{item.so_luong_con}} quyển</li>
+                                                {%endfor%}
+                                            </ul>
+                                        </details>
+                                        <details>
+                                            <summary><strong>Số lượng sách ngoại văn:</strong> {{ num_ngoaivan }} quyển</summary>
+                                            <ul>
+                                                {%for item in list_ngoaivan%}
+                                                    <li style="list-style-type:disc">{{item.ten}}: {{item.so_luong_con}} quyển</li>
+                                                {%endfor%}
+                                            </ul>
+                                        </details>
+                                        <details>
+                                        <summary><strong>Số lượng sách văn học:</strong> {{ num_vanhoc }} quyển</summary>
+                                            <ul>
+                                                {%for item in list_vanhoc%}
+                                                    <li style="list-style-type:disc">{{item.ten}}: {{item.so_luong_con}} quyển</li>
+                                                {%endfor%}
+                                            </ul>
+                                        </details>
+                                        <details>
+                                        <summary><strong>Số lượng sách nghệ thuật:</strong> {{ num_nghethuat }} quyển</summary>
+                                            <ul>
+                                                {%for item in list_nghethuat%}
+                                                <li style="list-style-type:disc">{{item.ten}}: {{item.so_luong_con}} quyển</li>
+                                                {%endfor%}
+                                            </ul>
+                                        </details>
+                                    </ul>
+                                </ul>
+                            </form>
+                        </div>
+                    </div><!--/login form-->
+                </div>
+            </div>
+        </div>
+</section><!--/form-->
+{% endblock %}

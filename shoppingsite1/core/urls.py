@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import DangNhap, UserView, dang_ky, HomePage, profile, password_change, ThieuNhi, KhoaHoc,NgoaiVan, VanHoc, NgheThuat, Uudai
+from .views import DangNhap, UserView, dang_ky, HomePage, profile, password_change, ThieuNhi, KhoaHoc,NgoaiVan, VanHoc, NgheThuat, Uudai, thongke, chinhsach, huongdan
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from . import views
@@ -33,6 +33,9 @@ urlpatterns = [
     path('order/order_detail/<int:id>/', views.don_hang_detail, name='order_detail'),
     path('order/order_user_list/',views.don_hang_list,name='order_user_list'),
     path('voucher/', Uudai.as_view(),name='uudai'),
+    path('thongke/', thongke.as_view(), name='thongke'),
+    path('chinhsach/', views.chinhsach, name='chinhsach'),
+    path('huongdan/', views.huongdan, name='huongdan')
 ]
 
 if settings.DEBUG:
