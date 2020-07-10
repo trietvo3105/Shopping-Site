@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import DangNhap, UserView, dang_ky, HomePage, profile, password_change, ThieuNhi, KhoaHoc,NgoaiVan, VanHoc, NgheThuat, Uudai, thongke, chinhsach, huongdan
+from .views import DangNhap, UserView, dang_ky, HomePage, profile, password_change, ThieuNhi, KhoaHoc,NgoaiVan, VanHoc, NgheThuat, Uudai, thongke
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from . import views
@@ -35,7 +35,8 @@ urlpatterns = [
     path('voucher/', Uudai.as_view(),name='uudai'),
     path('thongke/', thongke.as_view(), name='thongke'),
     path('chinhsach/', views.chinhsach, name='chinhsach'),
-    path('huongdan/', views.huongdan, name='huongdan')
+    path('huongdan/', views.huongdan, name='huongdan'),
+    path('lienhe/', views.lienhe, name='lienhe'),
 ]
 
 if settings.DEBUG:

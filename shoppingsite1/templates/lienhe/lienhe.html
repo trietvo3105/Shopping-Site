@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title %} Chính sách {%endblock%}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-15 padding-right">
+                <div class="features_items"><!--Tn_items-->
+                    <h2 class="title text-center"><a style="text-decoration: none; color:orange;"
+                                                     href="{% url 'core:lienhe' %}">Liên hệ</a></h2>
+                    <div class="row mb-3 justify-content-center">
+                        <div class="col-md-12 text-left">
+                            <p class="lead"><b>boOK.com</b></p>
+                            <p class="lead"><b>Địa chỉ:</b> 268 Lý Thường Kiệt, phường 14, quận 10, TP Hồ Chí Minh</p>
+                            <p class="lead"><b>Số điện thoại:</b> 0909796982</p>
+                            <p class="lead"><b>Email:</b> 1612878@hcmut.edu.vn</p>
+                            <p class="lead"><b>Website:</b> www.book_vvkq.com.vn</p>
+
+                        </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
